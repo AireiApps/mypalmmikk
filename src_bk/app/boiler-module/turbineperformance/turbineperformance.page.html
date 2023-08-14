@@ -1,0 +1,198 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Turbine Performance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="h6" style="text-align: center; margin-top: 10px;">
+    <b>Date: {{currentdate}}</b>
+  </div>
+
+  <div class="home-box">
+    <div class="card">
+      <form [formGroup]="turbineperformanceForm">
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Time <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <ion-datetime class="h7 form-control" formControlName="pickhour" display-format="HH:00" placeholder="Select Hour"></ion-datetime>            
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Boiler Pressure<br>(Psi) <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_boiler_pressure" placeholder="Boiler Pressure">
+          </div>
+        </div>
+
+        <div class="form-row imgmarigin">
+          <label class="h7 text-dark">Boiler Pressure Image</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right;">
+                <div class="imagePreview" *ngIf="imagePaths.boilerpressure_path == ''"></div>
+                <div class="imagePresent" *ngIf="imagePaths.boilerpressure_path != ''">
+                  <img class="imagePresent" [src]="imagePaths.boilerpressure_path" />
+                </div>                                           
+              </div>    
+            </div>
+    
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right;">
+              <label class="btn btn-warning">
+                Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                  style="width: 0px;height: 0px;overflow: hidden;display:none;" (click)="ImageUpload('BoilerPressure')">
+              </label>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Steam Flow at Boiler <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_steamfloatatboiler" placeholder="Steam Flow at Boiler">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Steam Flow at Turbine <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_steamfloatatturbine" placeholder="Steam Flow at Turbine">
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="h7 text-dark" style="text-align: center;"><b>Turbine Pressure</b></div>
+
+        <div class="form-row">          
+          <div class="col">
+            <div class="h7 text-dark">Inlet <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_inlet" placeholder="Inlet">
+          </div>
+        </div>
+
+        <div class="form-row">          
+          <div class="col">
+            <div class="h7 text-dark">Nozzle <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_nozzle" placeholder="Nozzle">
+          </div>
+        </div>
+
+        <hr>
+        
+        <div class="form-row">          
+          <div class="col">
+            <div class="h7 text-dark">Oil Press <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <select class="h7 form-control" formControlName="select_oilpress">
+              <option value="" selected disabled hidden>Select Option</option>
+              <option value="1/4">1/4</option>
+              <option value="1/2">1/2</option>   
+              <option value="3/4">3/4</option>
+              <option value="Full">Full</option>
+            </select>
+          </div>
+        </div>
+
+        
+        <div class="form-row">          
+          <div class="col">
+            <div class="h7 text-dark">KW <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_KW" placeholder="KW">
+          </div>
+        </div>
+
+        <div class="form-row imgmarigin">
+          <label class="h7 text-dark">KW Image</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right;">
+                <div class="imagePreview" *ngIf="imagePaths.kw_path == ''"></div>
+                <div class="imagePresent" *ngIf="imagePaths.kw_path != ''">
+                  <img class="imagePresent" [src]="imagePaths.kw_path" />
+                </div>                                           
+              </div>    
+            </div>
+    
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right;">
+              <label class="btn btn-warning">
+                Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                  style="width: 0px;height: 0px;overflow: hidden;display:none;" (click)="ImageUpload('KW')">
+              </label>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">          
+          <div class="col">
+            <div class="h7 text-dark">Hz <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_Hz" placeholder="Hz">
+          </div>
+        </div>
+
+        <div class="form-row imgmarigin">
+          <label class="h7 text-dark">Hz Image</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right;">
+                <div class="imagePreview" *ngIf="imagePaths.hz_path == ''"></div>
+                <div class="imagePresent" *ngIf="imagePaths.hz_path != ''">
+                  <img class="imagePresent" [src]="imagePaths.hz_path" />
+                </div>                                           
+              </div>    
+            </div>
+    
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right;">
+              <label class="btn btn-warning">
+                Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                  style="width: 0px;height: 0px;overflow: hidden;display:none;" (click)="ImageUpload('Hz')">
+              </label>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-success" (click)="turbineperformancesave()" style="margin-top: 10px; margin-bottom: 10px;">Save</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</ion-content>

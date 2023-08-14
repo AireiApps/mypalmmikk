@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">Machine Running Hours</ion-title>
+
+
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="home-box">
+    <div class="card gedf-card margin-bottom" *ngFor="let value of machinerunninglist">
+      <div class="card-header" style="text-align: center;">
+          <div class="h7 text-danger"><b>{{value.machinename}}</b></div>
+      </div>
+      <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 5px; margin-right: 5px;">
+          <div class="h7" [style.color]="getStatusColor(value.machinerunninghours, value.maxrunninghours)">Machine Running Hours : {{value.machinerunninghours}}</div>           
+          <div class="h7" [style.color]="getmaxColor()">Maximum Running Hours : {{value.maxrunninghours}}</div>           
+      </div>
+      <ion-row class="row-reverse">
+        <button *ngIf="value.machinerunninghours>=value.maxrunninghours" type="button" class="btn btn-outline-danger btn-sm margin-5px" (click)="btn_reset(value)">
+          <ion-icon name="refresh-outline"></ion-icon>
+          Reset
+        </button>
+      </ion-row>
+    </div>
+  </div>
+
+</ion-content>

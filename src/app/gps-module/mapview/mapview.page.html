@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav" (click)="back()"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Maps</ion-title>
+    <ion-buttons slot="end" *ngIf="name != 'Ffbsupplier' || name != 'Security'">
+      <button type="button" class="btn btn-outline-danger btn-sm margin-5px" style="text-align: right;" (click)="direction()">
+        <ion-icon name="ios-compass-outline"></ion-icon> Recenter
+      </button>
+    </ion-buttons>
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-row>
+    <div class="bg-yellow card-height" no-margin>
+      <ion-row >
+        <ion-col size="6">
+          <span class="common-whitecolor header-font">
+            {{newPosition}}
+          </span>
+        </ion-col>
+        <ion-col size="6" style="text-align: right;
+        margin: -10px;" *ngIf="screentype == 'driver'">
+          <button type="button" class="btn btn-outline-danger btn-sm margin-5px" style="text-align: right;" (click)="direction()">
+            <ion-icon name="ios-compass-outline"></ion-icon> Recenter
+          </button>
+        </ion-col>       
+      </ion-row>
+    </div>
+  </ion-row> -->
+
+  <div #map id="map"></div>
+
+</ion-content>

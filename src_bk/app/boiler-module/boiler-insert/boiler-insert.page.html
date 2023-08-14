@@ -1,0 +1,520 @@
+<ion-header>
+
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Boiler Log</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-row>
+    <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+      <span class="mdfont common-whitecolor">Boiler</span>
+    </ion-card>
+  </ion-row> -->
+
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tabs_segment">
+    <ion-segment-button value="frequency">
+      <ion-label>Hourly</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="chemical">
+      <ion-label>Chemical</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="water">
+      <ion-label>Water</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="level">
+      <ion-label>Level</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div [ngSwitch]="tabs_segment">
+
+    <div class="h6" style="text-align: center; margin-top: 10px;">
+      <b>Date: {{currentdate}}</b>
+    </div>
+
+    <div class="home-box" *ngSwitchCase="'frequency'">
+      <div class="card">
+        <form [formGroup]="frequencyForm">
+          <!-- <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Water Gage Glass: </div>
+            </div>
+            <div class="col">
+              <input type="number" class="form-control" formControlName="water_gage">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Pressure Gage Stream :</div>
+            </div>
+            <div class="col">
+              <input type="number" class="form-control" formControlName="pressure_gage">
+            </div>
+          </div> -->
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Steam Consumption</div>
+            </div>
+
+            <div class="col">
+              <input type="number" class="form-control" formControlName="steam_consumption">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Boiler Pressure</div>
+            </div>
+
+            <div class="col">
+              <input type="number" class="form-control" formControlName="boiler_pressure">
+            </div>
+          </div>
+
+          <div class="form-row imgmarigin" style="margin-top: 10px;">
+            <label class="h7 text-dark">Steam Consumption & Boiler Pressure</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.steampressure_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.steampressure_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.steampressure_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ImageUpload('SteamPressure')">
+                </label>
+              </div>
+              </div>    
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="h7 text-dark">Steam Consumption & Boiler Pressure Comments</div>
+          </div>
+    
+          <div class="form-row">
+            <div class="col">
+              <textarea class="h7 form-control" formControlName="steampressure_comments" rows="4" placeholder="Enter Comments"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row imgmarigin">
+            <label class="h7 text-dark">Boiler Fuel Status</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.boilerfuelstatus_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.boilerfuelstatus_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.boilerfuelstatus_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ImageUpload('BoilerFuelStatus')">
+                </label>
+              </div>
+              </div>
+    
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="h7 text-dark">Boiler Fuel Status Comments</div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <textarea class="h7 form-control" formControlName="boilerfuelstatus_comments" rows="4" placeholder="Enter Comments"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row imgmarigin">
+            <label class="h7 text-dark">Turbine/TNB</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.turbine_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.turbine_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.turbine_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ImageUpload('Turbine')">
+                </label>
+              </div>
+              </div>
+    
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="h7 text-dark">Turbine/TNB Comments</div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <textarea class="h7 form-control" formControlName="turbine_comments" rows="4" placeholder="Enter Comments"></textarea>
+            </div>
+          </div>
+
+
+          <div class="form-row imgmarigin">
+            <label class="h7 text-dark">Power Consumption (Kilowatt)</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.kilowatt_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.kilowatt_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.kilowatt_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ImageUpload('Kilowatt')">
+                </label>
+              </div>
+              </div>
+    
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="h7 text-dark">Power Consumption (Kilowatt) Comments</div>
+          </div>
+    
+          <div class="form-row">
+            <div class="col">
+              <textarea class="h7 form-control" formControlName="kilowatt_comments" rows="4" placeholder="Enter Comments"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row imgmarigin">
+            <label class="h7 text-dark">Smoke Analysis</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.smokeanalysis_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.smokeanalysis_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.smokeanalysis_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ImageUpload('SmokeAnalysis')">
+                </label>
+              </div>
+              </div>
+    
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="h7 text-dark">Smoke Analysis Comments</div>
+          </div>
+    
+          <div class="form-row">
+            <div class="col">
+              <textarea class="h7 form-control" formControlName="smokeanalysis_comments" rows="4" placeholder="Enter Comments"></textarea>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <button type="submit" class="btn btn-success" (click)="boiler_log_save('freq')" style="margin-top: 10px; margin-bottom: 10px;">Save</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+
+
+    <div class="home-box" *ngSwitchCase="'chemical'">
+      <div class="card">
+        <form [formGroup]="chemicalForm">
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Corrosion Inhibitor<br>(H920BC)</div>
+            </div>
+            
+            <div class="col">
+              <input type="number" class="form-control" formControlName="corrostion_in">
+            </div>
+            <div class="h7 text-dark">Kg</div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Scale Inhibitor<br>(H932BT)</div>
+            </div>
+            <div class="col">
+              <input type="number" class="form-control" formControlName="scale_in">
+            </div>
+            <div class="h7 text-dark" style="vertical-align: middle;">Kg</div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Sludge Conditioner<br>(H935BT)</div>
+            </div>
+
+            <div class="col">
+              <input type="number" class="form-control" formControlName="sludge_con">
+            </div>
+            <div class="h7 text-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">On-Line Cleaning<br>(H951BT)</div>
+            </div>
+
+            <div class="col">
+              <input type="number" class="form-control" formControlName="online_clean">
+            </div>
+            <div class="h7 text-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          </div>
+
+          <div style="text-align: center;">
+            <button type="submit" class="btn btn-success" (click)="boiler_log_save('chemical')" style="margin-top: 10px; margin-bottom: 10px;">Save</button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+
+    <div class="home-box" *ngSwitchCase="'water'">
+      <div class="card">
+        <form [formGroup]="waterForm">
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Water Clarifier Drain Out</div>
+            </div>
+            <div class="col">
+              <!-- <input type="number" class="form-control" formControlName="water_cla"> -->
+              <ion-datetime class="form-control" style="font-size: 12px;" formControlName="water_cla" display-format="HH:mm" placeholder="Select a Time"></ion-datetime>
+            </div>
+          </div>
+
+          <div class="form-row imgmarigin">
+            <label class="h7 text-dark">Water Clarifier Drain Out Image</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.waterclarifierdrainout_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.waterclarifierdrainout_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.waterclarifierdrainout_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none;" (click)="ImageUpload('WaterClarifierDrainOut')">
+                </label>
+              </div>
+              </div>
+    
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Sand Filter Backwash</div>
+            </div>
+            <div class="col">
+              <!-- <input type="number" class="form-control" formControlName="sand_filter"> -->
+              <ion-datetime class="form-control" style="font-size: 12px;" formControlName="sand_filter" display-format="HH:mm" placeholder="Select a Time"></ion-datetime>
+            </div>
+          </div>
+
+          <div class="form-row imgmarigin">
+            <label class="h7 text-dark">Sand Filter Backwash Image</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.sandfilterbackwash_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.sandfilterbackwash_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.sandfilterbackwash_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none;" (click)="ImageUpload('SandFilterBackwash')">
+                </label>
+              </div>
+              </div>
+    
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Softener Regeneration</div>
+            </div>
+
+            <div class="col">
+              <!-- <input type="number" class="form-control" formControlName="soft_reg"> -->
+              <ion-datetime class="form-control" style="font-size: 12px;" formControlName="soft_reg" display-format="HH:mm" placeholder="Select a Time"></ion-datetime>
+            </div>
+          </div>
+
+          <div class="form-row imgmarigin">
+            <label class="h7 text-dark">Softener Regeneration Image</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;">
+                  <div class="imagePreview" *ngIf="imagePaths.softenerregeneration_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imagePaths.softenerregeneration_path != ''">
+                    <img class="imagePresent" [src]="imagePaths.softenerregeneration_path" />
+                  </div>                                           
+                </div>
+    
+              </div>
+    
+              <div class="row">
+                <div class="col-sm-4" style="text-align: right;">
+                <label class="btn btn-warning">
+                  Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                    style="width: 0px;height: 0px;overflow: hidden;display:none;" (click)="ImageUpload('SoftenerRegeneration')">
+                </label>
+              </div>
+              </div>
+    
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Softener Hardness</div>
+            </div>
+
+            <div class="col">
+              <input type="number" class="form-control" formControlName="softener_hard">
+            </div>
+          </div>
+
+          <!-- <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">TDS</div>
+            </div>
+
+            <div class="col">
+              <input type="number" class="form-control" formControlName="tds">
+            </div>
+          </div> -->
+
+          <div style="text-align: center;">
+            <button type="submit" class="btn btn-success" (click)="boiler_log_save('water')" style="margin-top: 10px; margin-bottom: 10px;">Save</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="home-box" *ngSwitchCase="'level'">
+      <div class="card">
+        <form [formGroup]="levelForm">
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Overhead Tank</div>
+            </div>
+            
+            <div class="col">
+              <!-- <input type="number" class="form-control" formControlName="overhead_tank"> -->
+              <select class="form-control" style="font-size: 12px;" formControlName="overhead_tank">
+                <option value="" selected>Select Option</option>
+                <option value="Quarter(1/4)">Quarter(1/4)</option>
+                <option value="Half(1/2)">Half(1/2)</option>   
+                <option value="Full">Full</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Boiler Feed Water Tank</div>
+            </div>
+            <div class="col">
+              <!-- <input type="number" class="form-control" formControlName="boiler_feed"> -->
+              <select class="form-control" style="font-size: 12px;" formControlName="boiler_feed">
+                <option value="" selected>Select Option</option>
+                <option value="Quarter(1/4)">Quarter(1/4)</option>
+                <option value="Half(1/2)">Half(1/2)</option>   
+                <option value="Full">Full</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Turbine Oil Level</div>
+            </div>
+
+            <div class="col">
+              <!-- <input type="number" class="form-control" formControlName="turbine_oil"> -->
+              <select class="form-control" style="font-size: 12px;" formControlName="turbine_oil">
+                <option value="" selected>Select Option</option>
+                <option value="Quarter(1/4)">Quarter(1/4)</option>
+                <option value="Half(1/2)">Half(1/2)</option>   
+                <option value="Full">Full</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div style="text-align: center;">
+            <button type="submit" class="btn btn-success" (click)="boiler_log_save('level')" style="margin-top: 10px; margin-bottom: 10px;">Save</button>
+          </div>
+        
+        </form>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

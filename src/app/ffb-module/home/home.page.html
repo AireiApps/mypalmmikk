@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{mill_name}}</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="userlist">
+  <ion-grid>
+    <ion-row>
+      <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+        <span class="mdfont common-whitecolor">{{userlist.welcome_msg}}</span>
+        <!-- <ion-row>
+          <span class="common-whitecolor">
+            Thank you for using Mill Monitoring System.
+          </span>
+        </ion-row> -->
+      </ion-card>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-label></ion-label>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col size="12">
+        <ion-label>Thank you for using Mill Monitoring System.</ion-label>
+      </ion-col>
+
+    </ion-row> -->
+  </ion-grid>
+
+  <div class="home-box">
+    <ion-row>
+      <ion-col size="6">
+        <div class="card item-img" (click)="callmodalcontroller('PROFILE')">
+          <div class="item">
+            <img src="../../assets/img/nature.png" alt="PROFILE" />
+            <div class="container txt-home">
+              <p>Settings</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="card item-img" (click)="callmodalcontroller('FFBDISPATCH')">
+          <div class="item">
+            <img src="../../assets/img/trucking.png" alt="FFB" />
+            <div class="container txt-home">
+              <p>FFB Dispatch</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+
+      <!-- <ion-col size="4">
+
+        <div class="card">
+          <div class="item">
+            <img src="../../assets/img/trucking.png" alt="DESTINATION">
+            <div class="container txt-home">
+              <p>VIEW DESTINATION</p>
+            </div>
+          </div>
+        </div>
+
+      </ion-col> -->
+    </ion-row>
+
+    <div *ngIf="recentffbOrder.length>0">
+      <ion-row style="padding-top: 20px; padding-bottom: 10px">
+        <ion-label>In Transit</ion-label>
+      </ion-row>
+
+      <div
+        class="card gedf-card margin-bottom"
+        *ngFor="let value of recentffbOrder"
+      >
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 text-muted">
+                  Destination: {{value.destination_name}}
+                </div>
+                <!-- <div class="h7 text-muted">Net Weight : {{value.net_weight}} Kgs</div> -->
+                <div class="h7 text-muted">
+                  Supplier Weight : {{value.supplier_weight}} Kgs
+                </div>
+                <div class="h7 text-muted">Date : {{value.date}}</div>
+                <div class="h7 text-muted">
+                  Vehicle Number: {{value.vehicle_name}}
+                </div>
+                <div class="h7 text-muted">Driver: {{value.driver_name}}</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="d-flex justify-content-between align-items-center"
+            style="float: right"
+            *ngIf="value.status"
+          >
+            <app-oval-shape status="{{ value.status }}"></app-oval-shape>
+
+            <!-- <ion-card class="bg-green bottompad-10px status-card" no-margin>
+            <ion-row>
+              <span class="common-whitecolor" style="margin-left: 10px;">
+                {{ value.status }}
+              </span>
+            </ion-row>
+          </ion-card> -->
+          </div>
+        </div>
+        <!-- <div class="card-body">
+        <p class="card-text">
+          {{ value.desc }}
+        </p>
+
+      </div> -->
+        <ion-row class="row-reverse">
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm margin-5px"
+            (click)="btn_mapAction(value)"
+            *ngIf="value.status != 'Driver to Start'"
+          >
+            <ion-icon name="location-outline"></ion-icon>Live Location
+          </button>
+          <!-- <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_detailAction(value)">
+          <ion-icon name="document"></ion-icon>
+          Details
+        </button> -->
+        </ion-row>
+      </div>
+    </div>
+  </div>
+</ion-content>

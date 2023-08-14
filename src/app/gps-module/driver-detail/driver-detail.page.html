@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+    <div class="home-box" *ngFor="let value of driverdetaillist">
+      
+      <div>
+
+      <div>FFB Dispatch Note</div>
+
+      <ion-row style="margin-top: 10px;">
+        <ion-col style="text-align: center">
+          <div class="imagePreview"  *ngIf="value.image_location == ''"></div>
+          <div class="imagePresent"  *ngIf="value.image_location != ''">
+            <img class="imagePresent" (click)="viewimage(value.image_location)" src="{{value.image_location}}" />
+          </div>
+        </ion-col>
+      </ion-row>
+      </div>
+    </div> 
+</ion-content>

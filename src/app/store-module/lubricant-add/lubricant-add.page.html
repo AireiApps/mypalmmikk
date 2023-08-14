@@ -1,0 +1,233 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Add Lubricant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="lubricantForm">
+    <ion-card class="card">
+      <div class="col" style="margin-top: 10px;">
+        <div>Year</div>
+      </div>
+      <div class="form-row">
+        <!-- <div class="col">
+          <div class="h6 text-muted">Year :</div>
+        </div> -->
+        <div class="col">
+          <select formControlName="year" class="form-control">
+            <option value="" selected>Select Year</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="col">
+        <div>Month</div>
+      </div>
+  
+      <div class="form-row">
+        <!-- <div class="col">
+          <div class="h6 text-muted">Month :</div>
+        </div> -->
+        <div class="col">
+          <select formControlName="month" class="form-control">
+            <option value="" selected>Select Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="col">
+        <div>Week</div>
+      </div>
+  
+      <div class="form-row">
+        <!-- <div class="col">
+          <div class="h6 text-muted">Week :</div>
+        </div> -->
+        <div class="col">
+          <select formControlName="week" class="form-control">
+            <option value="">Select Week</option>
+            <option value="1">Week-1</option>
+            <option value="2">Week-2</option>
+            <option value="3">Week-3</option>
+            <option value="4">Week-4</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div>Type</div>
+      </div>
+
+      <div class="form-row" style="margin-top: 10px;">
+        <div class="col">
+          <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="greasing" formControlName="greasing"> 
+          <label class="form-check-label" for="greasing">Greasing</label>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="gearboxoil" formControlName="gearboxoil">
+          <label class="form-check-label" for="gearboxoil">GearBox Oil (GO)</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="hydrateroil" formControlName="hydrateroil">
+          <label class="form-check-label" for="hydrateroil">Hydraulic Oil (HO)</label>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="compressoroil" formControlName="compressoroil">
+          <label class="form-check-label" for="compressoroil">Compress Oil (CO)</label>
+          </div>
+        </div>
+      </div>
+      
+      </ion-card>
+
+      <ion-card class="card">
+        <form [formGroup]="machineForm">          
+          <!-- <div *ngIf="typeList.length > 0" style="padding: 15px;">
+            <ion-item *ngFor="let type of typeList; let i = index">
+              <ion-label>{{type?.typeName}}</ion-label>
+              <ion-checkbox color="primary" (click)="selectType(i, type.typeName)" [(ngModel)]="type.checked" formControlName="type"></ion-checkbox>
+            </ion-item>
+          </div> -->
+          
+          <div class="col">
+            <div>Station</div>
+          </div>
+  
+          <div class="form-row">
+            <!-- <div class="col">
+              <div class="h6 text-muted">Station :</div>
+            </div> -->
+            <div class="col">
+              <select formControlName="station_name" class="form-control" name="station" (change)="onChangeStation()">
+                <option value="">Select Station</option>
+                <option value="{{parseString(value)}}" *ngFor="let value of stationArr">{{ value.station_name }}</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="col">
+            <div>Machinery</div>
+          </div>
+  
+          <div class="form-row">
+            <!-- <div class="col">
+              <div class="h6 text-muted">Machinery :</div>
+            </div> -->
+            <div class="col">
+              <select formControlName="select_location" class="form-control" name="location" (change)="onChangeLocation()">
+                <option value="">Select Machinery</option>
+      
+                <option value=" {{ parseString(value)}}" *ngFor="let value of locatioArr">{{ value.location_name }}</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="col">
+            <div>Part</div>
+          </div>
+  
+          <div class="form-row">
+            <!-- <div class="col">
+              <div class="h6 text-muted">Part :</div>
+            </div> -->
+            <div class="col">
+              <select formControlName="select_part" class="form-control" name="parts">
+                <option value="">Select Part</option>
+                <option value="{{parseString(item)}}" *ngFor="let item of partArr">{{ item.item_name }}</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="col">
+            <div>Remarks</div>
+          </div>
+  
+          <div class="form-row">
+            <!-- <div class="col">
+              <div class="h6 text-muted">Comments/Remarks :</div>
+            </div> -->
+        
+            <div class="col">
+              <textarea class="form-control" formControlName="tacomments" placeholder="Enter Remarks"></textarea>
+            </div>
+          </div>
+  
+        <ion-row>
+          <ion-col size="12">
+            <button type="submit" class="btn btn-warning" (click)="addNewRow()" style="float: right;margin: 20px;">Add Machine</button>
+          </ion-col>
+        </ion-row>
+        
+        <div formArrayName="materialitemRows">
+          <ion-row>
+            <div class="card gedf-card margin-bottom"
+              *ngFor="let materialitemrow of machineForm.controls.materialitemRows.controls; let i=index" [formGroupName]="i"
+              style="width: 100%;margin: 5px;">
+              <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="ml-2">
+                      <div class="h7 text-danger"><b>Station Name : {{getItembyKey('station_name',materialitemrow,'station_name')}}</b></div>
+                      <div class="h7 text-dark">Machinery : {{getItembyKey('select_location',materialitemrow,'location_name')}}
+                      </div>
+                      <div class="h7 text-dark">Part : {{getItembyKey('select_part',materialitemrow,'item_name')}}</div>                    
+                      <div class="h7 text-dark">Remarks : {{materialitemrow.get('tacomments').value}}</div>
+                      <!-- <div class="h7 text-dark">Type : {{selectedArray}}</div>
+                      <div class="h7 text-dark">TypeId: {{materialitemrow.get('tatypeid').value}}</div> -->
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-danger card-link ion-text-end btn-color" (click)="deleteRow(i)">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+    
+          </ion-row>
+  
+        </div>
+        </form>
+      </ion-card>
+
+      <ion-row *ngIf="machineForm.controls.materialitemRows.controls.length > 0">
+        <ion-col size="12">
+          <button type="submit" class="btn btn-success" (click)="btn_save()" style="float: right;margin: 20px;">Submit</button>
+        </ion-col>
+      </ion-row>
+
+  </form>
+</ion-content>

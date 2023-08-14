@@ -1,0 +1,157 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Hourly Log</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="home-box">
+    <div class="card">
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">Steam Consumption</div>
+        </div>
+
+        <div class="col">
+          <input type="number" class="form-control" value="{{params.steamOutput}}" readonly>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark">Boiler Pressure</div>
+        </div>
+
+        <div class="col">
+          <input type="number" class="form-control" value="{{params.boilerpressure}}" readonly>
+        </div>
+      </div>
+
+      <div class="form-row imgmarigin" style="margin-top: 10px;">
+        <label class="h7 text-dark">Steam Consumption & Boiler Pressure</label>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right;">
+              <div class="imagePreview" *ngIf="params.steamPressureConsumptionImage == ''"></div>
+              <div class="imagePresent" *ngIf="params.steamPressureConsumptionImage != ''">
+                <img class="imagePresent" [src]="params.steamPressureConsumptionImage" />
+              </div>                                           
+            </div>
+          </div>  
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">Steam Consumption & Boiler Pressure Comments</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea class="h7 form-control" rows="4" readonly>{{params.steamPressuerConsumptionComments}}</textarea>
+        </div>
+      </div>
+
+      <div class="form-row imgmarigin">
+        <label class="h7 text-dark">Boiler Fuel Status</label>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right;">
+              <div class="imagePreview" *ngIf="params.boilerfuelstatusImage == ''"></div>
+              <div class="imagePresent" *ngIf="params.boilerfuelstatusImage != ''">
+                <img class="imagePresent" [src]="params.boilerfuelstatusImage" />
+              </div>                                           
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">Boiler Fuel Status Comments</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea class="h7 form-control" rows="4" readonly>{{params.boilerfuelstatusComments}}</textarea>
+        </div>
+      </div>
+
+      <div class="form-row imgmarigin">
+        <label class="h7 text-dark">Turbine/TNB</label>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right;">
+              <div class="imagePreview" *ngIf="params.turbineImage == ''"></div>
+              <div class="imagePresent" *ngIf="params.turbineImage != ''">
+                <img class="imagePresent" [src]="params.turbineImage" />
+              </div>                                           
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">Turbine/TNB Comments</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea class="h7 form-control" rows="4" readonly>{{params.turbineComments}}</textarea>
+        </div>
+      </div>
+
+      <div class="form-row imgmarigin">
+        <label class="h7 text-dark">Power Consumption (Kilowatt)</label>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right;">
+              <div class="imagePreview" *ngIf="params.killowattConsumptionImage == ''"></div>
+              <div class="imagePresent" *ngIf="params.killowattConsumptionImage != ''">
+                <img class="imagePresent" [src]="params.killowattConsumptionImage" />
+              </div>                                           
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">Power Consumption (Kilowatt) Comments</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea class="h7 form-control" rows="4" readonly>{{params.killowattPressuerConsumptionComments}}</textarea>
+        </div>
+      </div>
+
+      <div class="form-row imgmarigin">
+        <label class="h7 text-dark">Smoke Analysis</label>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right;">
+              <div class="imagePreview" *ngIf="params.smokeAnalysisImage == ''"></div>
+              <div class="imagePresent" *ngIf="params.smokeAnalysisImage != ''">
+                <img class="imagePresent" [src]="params.smokeAnalysisImage" />
+              </div>                                           
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="h7 text-dark">Smoke Analysis Comments</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea class="h7 form-control" rows="4" readonly>{{params.smokeAnalysisComments}}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

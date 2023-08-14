@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Fresh Fruit Bunches (FFB)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="row-reverse">
+    <ion-col size="12">
+      <button type="button" class="btn btn-outline-danger btn-sm" style="margin: 5px 5px 0px 5px;" (click)="btn_manualreceiveffb()">
+        <ion-icon name="newspaper"></ion-icon>Manually Receive FFB
+      </button>
+    </ion-col>
+  </ion-row>
+  
+  <ion-grid *ngIf="ffbOrdersLength>0">
+    <ion-row>
+      <ion-card class="bg-yellow card-height" no-margin style="text-align: center;" >        
+        <span class="mdfont common-whitecolor">FFB Vehicles In Transit</span>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+
+  <div class="home-box">
+    <div class="card gedf-card margin-bottom" *ngFor="let value of ffbOrders">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="ml-2">              
+              <div class="h7 text-muted userinput">Supplier Name: {{value.company_name}}</div>
+              <div class="h7 text-muted userinput">Date: {{value.date}}</div>
+              <div class="h7 text-muted userinput">Vehicle No: {{value.vehicle_no}}</div>
+              <div class="h7 text-muted userinput">Driver Name: {{value.driver_name}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center userinput" style="float: right;" *ngIf="value.status">
+          <app-oval-shape status="{{ value.status }}"></app-oval-shape>
+        </div>
+      </div>
+
+      <ion-row class="row-reverse">
+        <button type="button" class="btn btn-outline-info btn-sm margin-5px userinput" (click)="btn_ffbAction(value)">
+          <ion-icon name="document"></ion-icon> Receive
+        </button>
+      </ion-row>
+    </div>
+
+    <div style="margin-top: 60%;" *ngIf="enableflag==true"> 
+      <ion-row>
+        <ion-col class="colalign">
+          <p style="color: #e30414; font-size: 14px;">No Records Found</p>
+        </ion-col>
+        </ion-row>
+    </div>
+  </div>
+</ion-content>

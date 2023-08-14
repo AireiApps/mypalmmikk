@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{ 'LABHOME.title' | translate}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <iframe src="http://103.27.72.29/mms.airei.com.my1/index.php/Attendance_mobile"  style="width:100%;height:100%" scrolling="yes" ></iframe> -->
+  <iframe [src]="weburl | safe"  style="width:100%;height:100%;border:none;" scrolling="yes"></iframe>
+</ion-content>

@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Security Rounds</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="securityroundsForm">
+
+    <div class="form-row">
+      <div class="col">
+        <div class="h6 text-dark">Location :</div>
+      </div>
+      <div class="col">
+        <select class="form-control h6" formControlName="select_location" placeholder="Select Location" [(ngModel)]="selectlocation.form">
+          <option value="" selected disabled hidden>Select Location</option>
+          <option value="{{ value.location_id }}" *ngFor="let value of locationList">{{ value.location }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+      <div class="col h6 text-dark" style="margin-top: 10px">
+        <div>Comments</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea
+            class="form-control h6"
+            formControlName="taComments"
+            rows="3"
+            placeholder="Enter Comments"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- <div class="form-row imgmarigin">
+        <label class="h6 text-dark"
+          >Please Upload the Secure Security Location</label
+        >
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right">
+              <div
+                class="imagePreview"
+                *ngIf="imagePaths.securityround_path == ''"></div>
+              <div
+                class="imagePresent"
+                *ngIf="imagePaths.securityround_path != ''">
+                <img class="imagePresent" [src]="imagePaths.securityround_path"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4" style="text-align: right">
+              <label class="btn btn-warning">
+                Upload<input
+                  type="button"
+                  class="uploadFile img"
+                  value="Upload Photo"
+                  style="
+                    width: 0px;
+                    height: 0px;
+                    overflow: hidden;
+                    display: none;"
+                  (click)="ImageUpload()"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <ion-row>
+        <ion-col size="12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            (click)="btn_save()"
+            style="float: right; margin: 20px">
+            Submit
+          </button>
+        </ion-col>
+      </ion-row>
+  </form>
+</ion-content>

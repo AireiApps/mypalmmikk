@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{mill_name}}</ion-title>
+
+
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+        <span class="mdfont common-whitecolor">{{userlist.welcome_msg}}</span>
+      </ion-card>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-label></ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row class="row-reverse">
+    <ion-col size="12">
+      <button type="button" class="btn btn-outline-danger btn-sm margin-5px" style="float: right;" (click)="btn_quoteapproval()">
+        <ion-icon name="document-text-outline"></ion-icon> Order Status Update
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <div class="home-box">
+    <ion-row style="padding-top: 40px;padding-bottom: 10px;">
+      <ion-label>Recent Orders</ion-label>
+    </ion-row>
+
+    <div *ngIf="department == 'Store'">
+      <div class="card gedf-card margin-bottom" *ngFor="let value of recentStore">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 text-muted">SOR ID : {{value.sor_no}}</div>
+                <div class="h7 text-muted">Department : {{value.department}}</div>
+                <div class="h7 text-muted">Name : {{value.requester_name}}</div>
+                <div class="h7 text-muted">Date: {{value.date}}</div>
+                <div class="h7 text-muted">Items: {{value.noofitems}}</div>
+                <div class="h7 text-muted">Type: {{value.requestName}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ion-row class="row-reverse">
+          <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_detailAction(value)">
+            <ion-icon name="document"></ion-icon>
+            Details
+          </button>
+        </ion-row>
+      </div>
+    </div>
+
+
+    <div *ngIf="department == 'Maintenance'">
+      <div class="card gedf-card margin-bottom" *ngFor="let value of recentStore">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 text-muted">Part Name : {{value.item_name}}</div>
+                <div class="h7 text-muted">Machinery Name : {{value.location_name}}</div>
+                <div class="h7 text-muted">Qty : {{value.qty}}</div>
+                <div class="h7 text-muted">Station Name: {{value.station_name}}</div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

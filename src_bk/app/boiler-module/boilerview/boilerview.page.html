@@ -1,0 +1,198 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">View Log</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tabs_segment">
+    <ion-segment-button value="frequency">
+      <ion-label>Hourly</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="chemical">
+      <ion-label>Chemical</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="water">
+      <ion-label>Water</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="level">
+      <ion-label>Level</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="tabs_segment">
+    <div *ngSwitchCase="'frequency'">
+        <form [formGroup]="frequencyForm">          
+          <div class="form-row">
+            <div class="col">
+              <ion-datetime class="form-control userfont" formControlName="from_date" display-format="DD-MM-YYYY"></ion-datetime>
+            </div>
+            <div class="userfont" style="margin-top: 5px;">To</div>
+            <div class="col">
+              <ion-datetime class="form-control userfont" formControlName="to_date" display-format="DD-MM-YYYY"></ion-datetime>
+            </div>
+          </div>
+
+          <div style="padding-right: 5px;">
+            <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right userfont"
+              (click)="callAPI('Frequency')">
+              <ion-icon name="filter"></ion-icon>
+              Get Record(s)
+            </button>
+          </div>          
+
+          <!-- <div class="card gedf-card margin-bottom"  *ngFor="let value of frequencyList">
+            <div class="card-header">
+                  <div>                                        
+
+                    <div class="h7 text-dark">Water Gage Glass : {{value.waterGageGlass}}</div>                    
+
+                    <div class="h7 text-dark">Pressure Gage Stream : {{value.pressureGageSteam}}</div>                    
+
+                    <div class="h7 text-dark">Steam Output : {{value.steamOutput}}</div>   
+
+                    <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+                                        
+                  </div>
+              </div>
+            </div> -->
+
+            <div class="card gedf-card margin-bottom" *ngFor="let value of frequencyList">
+              <div class="card-header">
+                  <div class="h5 text-muted" style="text-align: center;"><b>{{value.insdtTime}}</b></div>            
+              </div>
+              <ion-row class="row-reverse">
+                <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_View(value)">
+                  <ion-icon name="eye-outline"></ion-icon>
+                  View
+                </button>
+              </ion-row>
+            </div>
+        </form>
+    </div>
+
+    <div *ngSwitchCase="'chemical'">      
+        <form [formGroup]="chemicalForm">          
+          <div class="form-row">
+            <div class="col">
+              <ion-datetime class="form-control userfont" formControlName="from_date" display-format="DD-MM-YYYY"></ion-datetime>
+            </div>
+            <div class="userfont" style="margin-top: 5px;">To</div>
+            <div class="col">
+              <ion-datetime class="form-control userfont" formControlName="to_date" display-format="DD-MM-YYYY"></ion-datetime>
+            </div>
+          </div>
+
+          <div style="padding-right: 5px;">
+            <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right userfont"
+              (click)="callAPI('Chemical')">
+              <ion-icon name="filter"></ion-icon>
+              Get Record(s)
+            </button>
+          </div>          
+
+          <div class="card gedf-card margin-bottom" *ngFor="let value of chemicalList">
+            <div class="card-header">
+  
+                  <div>
+                    <div class="h7 text-muted">Corrosion Inhibitor (H920BC) : {{value.corrosionInhibitor}}</div>                    
+
+                    <div class="h7 text-muted">Scale Inhibitor (H932BT) : {{value.scaleInhibitor}}</div>                    
+
+                    <div class="h7 text-muted">Sludge Conditioner (H935BT) : {{value.sludgeConditioner}}</div>                                    
+                    
+                    <div class="h7 text-muted">On-Line Cleaning (H951BT) : {{value.onLineCleaning}}</div>     
+                    
+                    <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+                  </div>
+
+            </div>
+          </div>
+        </form>      
+    </div>
+
+    <div *ngSwitchCase="'water'">      
+        <form [formGroup]="waterForm">          
+          <div class="form-row">
+            <div class="col">
+              <ion-datetime class="form-control userfont" formControlName="from_date" display-format="DD-MM-YYYY"></ion-datetime>
+            </div>
+            <div class="userfont" style="margin-top: 5px;">To</div>
+            <div class="col">
+              <ion-datetime class="form-control userfont" formControlName="to_date" display-format="DD-MM-YYYY"></ion-datetime>
+            </div>
+          </div>
+
+          <div style="padding-right: 5px;">
+            <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right userfont"
+              (click)="callAPI('Water')">
+              <ion-icon name="filter"></ion-icon>
+              Get Record(s)
+            </button>
+          </div>          
+
+          <div class="card gedf-card margin-bottom" *ngFor="let value of waterList">
+            <div class="card-header">
+
+                  <div>
+                    <div class="h7 text-muted">Water Clarifier Drain Out : {{value.waterClarifierDrainOut}}</div>                    
+
+                    <div class="h7 text-muted">Sand Filter Backwash : {{value.sandFilterBackwash}}</div>                    
+
+                    <div class="h7 text-muted">Softener Regeneration : {{value.softenerRegeneration}}</div>                                     
+                    
+                    <div class="h7 text-muted">Softener Hardness : {{value.softenerHardness}}</div>                    
+                    
+                    <div class="h7 text-muted">TDS : {{value.tds}}</div>    
+                    
+                    <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+                  </div>
+ 
+            </div>
+          </div>
+        </form>      
+    </div>
+
+    <div *ngSwitchCase="'level'">      
+        <form [formGroup]="levelForm">
+          <div class="form-row">
+            <div class="col">
+              <ion-datetime class="form-control userfont" formControlName="from_date" display-format="DD-MM-YYYY"></ion-datetime>
+            </div>
+            <div class="userfont" style="margin-top: 5px;">To</div>
+            <div class="col">
+              <ion-datetime class="form-control userfont" formControlName="to_date" display-format="DD-MM-YYYY"></ion-datetime>
+            </div>
+          </div>
+
+          <div style="padding-right: 5px;">
+            <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right userfont"
+              (click)="callAPI('Level')">
+              <ion-icon name="filter"></ion-icon>
+              Get Record(s)
+            </button>
+          </div>
+
+          <div class="card gedf-card margin-bottom" *ngFor="let value of levelList">
+            <div class="card-header">
+                  <div>
+                    <div class="h7 text-muted">OverHead Tank : {{value.overheadTank}}</div>                    
+
+                    <div class="h7 text-muted">Boiler Feed Water Tank : {{value.boilerFeedWaterTank}}</div>                    
+
+                    <div class="h7 text-muted">Turbine Oil Level : {{value.turbineOilLevel}}</div>  
+                    
+                    <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+
+                  </div>
+            </div>
+          </div>
+        </form>      
+    </div>
+  </div>
+
+</ion-content>

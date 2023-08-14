@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Boiler Performance Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="h6" style="text-align: center; margin-top: 10px;">
+    <b>Date: {{currentdate}}</b>
+  </div>
+
+  <div class="home-box">
+    <div class="card">
+      <form [formGroup]="boilerperformancedataForm">
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Monitoring Date <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <ion-datetime class="form-control userfont" formControlName="monitoringdate" display-format="DD-MM-YYYY"></ion-datetime>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Pressure (Hg/H<sub>2</sub>O) <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_pressure" placeholder="Pressure">
+          </div>   
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Flowrate (M<sup>3</sup>/S) <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_flowrate" placeholder="Flowrate">
+          </div>   
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Opacity or Stack Condition <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_opacityorstackcondition" placeholder="Opacity/Stack">
+          </div>   
+        </div>
+
+        <!-- <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Other Particals <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_otherparticals" placeholder="Other Particals">
+          </div>   
+        </div> -->
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Smoke Particles <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_smokeparticals" placeholder="Smoke Particles">
+          </div>   
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">Discharge Hopper Condition <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <input type="number" class="h7 form-control" formControlName="txt_dischargehoppercondition" placeholder="Discharge Hopper">
+          </div>   
+        </div>
+
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-success" (click)="boilerperformancesave()" style="margin-top: 10px; margin-bottom: 10px;">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">Logbook</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="logbookForm">
+    <div class="form-row">
+      <div class="col">
+        <ion-datetime class="form-control userinput" formControlName="fromdate" display-format="DD-MM-YYYY">
+        </ion-datetime>
+      </div>
+      <div class="userinput" style="margin-top: 5px;">To</div>
+      <div class="col">
+        <ion-datetime class="form-control userinput" formControlName="todate" display-format="DD-MM-YYYY">
+        </ion-datetime>
+      </div>
+    </div>
+
+    <div class="form-row" style="align-items: center;">      
+      <div class="col">
+        <button type="button" class="btn btn-outline-info userinput" style="float: right;" (click)="callAPI()"><ion-icon name="filter"></ion-icon>
+          Get Record(s)
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <hr>
+
+  <div class="home-box">
+
+    <div *ngFor="let value of logbookList">
+      <ion-row class="cell" style="margin-bottom: 5px;" *ngIf="value.type == 'SHIFT'">
+
+        <ion-col size="0.5" [style.backgroundColor]="getStatusColor(value.type)"></ion-col>
+
+        <ion-col size="1.5" class="ion-align-self-center">
+          <div class="text-dark" style="font-size: 10px;"><b>{{value.time}}</b></div>
+        </ion-col>
+
+        <ion-col size="1"></ion-col>
+
+        <ion-col size="9" class="ion-align-self-center" [style.backgroundColor]="getStatusColor(value.type)">
+          <div class="h7 text-dark" style="text-align: center;"><b>SHIFT</b></div>          
+          <div class="h7 text-dark" style="text-align: left;">{{value.comments}}</div>
+          <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="cell" style="margin-bottom: 5px;" *ngIf="value.type == 'FFB'">
+
+        <ion-col size="0.5" [style.backgroundColor]="getStatusColor(value.type)"></ion-col>
+
+        <ion-col size="1.5" class="ion-align-self-center">
+          <div class="text-dark" style="font-size: 10px;"><b>{{value.time}}</b></div>
+        </ion-col>
+
+        <ion-col size="1"></ion-col>
+
+        <ion-col size="9" class="ion-align-self-center" [style.backgroundColor]="getStatusColor(value.type)">
+          <div class="h7 text-dark" style="text-align: center;"><b>FFB</b></div>
+          <div class="h7 text-dark" style="text-align: left;">Supplier Name: {{value.supplier_name}}</div>
+          <div class="h7 text-dark" style="text-align: left;" *ngIf="value.driver_name!=''" >Driver Name: {{value.driver_name}}</div> 
+          <div class="h7 text-dark" style="text-align: left;">Vehicle No: {{value.vehicle_no}}</div>
+          <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="cell" style="margin-bottom: 5px;" *ngIf="value.type == 'OTHER'">
+
+        <ion-col size="0.5" [style.backgroundColor]="getStatusColor(value.type)"></ion-col>
+
+        <ion-col size="1.5" class="ion-align-self-center">
+          <div class="text-dark" style="font-size: 10px;"><b>{{value.time}}</b></div>
+        </ion-col>
+
+        <ion-col size="1"></ion-col>
+
+        <ion-col size="9" class="ion-align-self-center" [style.backgroundColor]="getStatusColor(value.type)">
+          <div class="h7 text-dark" style="text-align: center;"><b>OTHER</b></div>
+          <div class="h7 text-dark" style="text-align: left;">Name: {{value.driver_name}}</div>
+          <div class="h7 text-dark" style="text-align: left;">Company: {{value.supplier_name}}</div> 
+          <div class="h7 text-dark" style="text-align: left;">Vehicle No: {{value.vehicle_no}}</div>
+          <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="cell" style="margin-bottom: 5px;" *ngIf="value.type == 'REPORT'">
+
+        <ion-col size="0.5" [style.backgroundColor]="getStatusColor(value.type)"></ion-col>
+
+        <ion-col size="1.5" class="ion-align-self-center">
+          <div class="text-dark" style="font-size: 10px;"><b>{{value.time}}</b></div>
+        </ion-col>
+
+        <ion-col size="1"></ion-col>
+
+        <ion-col size="9" class="ion-align-self-center" [style.backgroundColor]="getStatusColor(value.type)">
+          <div class="h7 text-dark" style="text-align: center; margin-bottom: 5px;"><b>REPORT</b></div>    
+          <div class="imagePresent" *ngIf="value.image_location != ''">
+            <img class="imagePresent" src="{{value.image_location}}" (click)='viewimage(value.image_location)' />
+          </div>
+          <div *ngIf="value.image_location != ''">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </div>
+          <div class="h7 text-dark">Comments: {{value.comments}}</div>
+          <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>       
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </div>
+</ion-content>

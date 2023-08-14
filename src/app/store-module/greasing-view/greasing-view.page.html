@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Greasing Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+  <form [formGroup]="greasingdetailForm">
+    <ion-card class="card">
+    <div class="col" style="margin-top: 10px;">
+      <div>Year</div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="year" value="{{getyear}}" readonly>
+      </div>
+    </div>
+
+    <div class="col">
+      <div>Month</div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="month" value="{{getmonth}}" readonly>
+      </div>
+    </div>
+
+    <div class="col">
+      <div>Week</div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="week" value="{{getweek}}" readonly>
+      </div>
+    </div>
+    </ion-card>
+
+    <ion-card class="card">
+      <div class="home-box">
+        <ion-row style="padding-bottom: 10px;">
+          <ion-label style="color: black;">Greasing List(s)</ion-label>
+        </ion-row>
+
+        <div class="card gedf-card margin-bottom" *ngFor="let value of machinelist">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 text-danger"><b>Station Name :{{value.stationname}}</b></div>
+                  <div class="h7 text-dark">Machinery : {{value.locationName}}</div>
+                  <div class="h7 text-dark">Part : {{value.partsname}}</div>
+                  <div class="h7 text-dark">Remarks : {{value.remark}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+
+  </form>
+
+</div>
+  
+</ion-content>

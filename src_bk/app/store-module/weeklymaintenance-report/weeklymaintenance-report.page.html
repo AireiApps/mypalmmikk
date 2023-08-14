@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Weekly Maintenance Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box"> 
+    <div>
+      <div class="card gedf-card margin-bottom" *ngFor="let value of weeklymaintenancelist">
+        <div class="card-header">
+            <div class="h5 text-muted" style="text-align: center;"><b>{{value.date}}</b></div>
+        </div>
+        <ion-row class="row-reverse">
+          <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_View(value)">
+            <ion-icon name="eye-outline"></ion-icon>
+            View
+          </button>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+</ion-content>

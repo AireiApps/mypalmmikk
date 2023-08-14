@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">Security Screen</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+        <span class="mdfont common-whitecolor">{{userlist.welcome_msg}}</span>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+
+  <div class="home-box">
+    <form [formGroup]="securityForm">
+      <div class="checkcard item-img" style="background-image: linear-gradient(315deg, #f7f7f7 0%, #f7f7f7 74%);">
+        <ion-row>
+          <ion-col class="vertical-align-content" size="8">          
+            <div class="col">
+              <select class="h7 form-control" formControlName="shift" [(ngModel)]="selectshift.form" style="font-size: 14px;">
+                <option value="" selected>Select Shift</option>
+                <option value="0">Shift-A</option>
+                <option value="1">Shift-B</option>   
+              </select>
+            </div>
+          </ion-col>
+
+          <ion-col style="vertical-align: middle; text-align: center;" size="4">
+            <div (click)="showTimepicker()">
+              <div>
+                <img src="../../assets/img/on-button.png" alt="PROFILE" *ngIf="checkinoutflag == 0"/>
+                <img src="../../assets/img/off-button.png" alt="PROFILE" *ngIf="checkinoutflag != 0"/>
+                <!-- <div>
+                  <p *ngIf="checkinoutflag == 0">Check-In</p>
+                  <p *ngIf="checkinoutflag != 0">Check-Out</p>
+                </div> -->
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </form>
+    
+    <div class="checkcard item-img" style="background-image: linear-gradient(315deg, #f7f7f7 0%, #f7f7f7 74%);" style="margin-top: 10px;">
+    
+      <div style="text-align: center;">
+        <button type="submit" class="btn btn-warning buttonfont" (click)="btn_ffb()" >FFB</button>
+      </div>
+
+      <div style="text-align: center;">
+      <button type="submit" class="btn btn-success buttonfont" (click)="btn_others()">Others</button>
+      </div>
+
+      <div style="text-align: center;">
+      <button type="submit" class="btn btn-primary buttonfont" (click)="btn_reports()">Reports</button>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

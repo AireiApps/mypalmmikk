@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">Records</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card">
+    <form [formGroup]="firstrecordForm">
+
+      <div class="form-row" style="align-items: center;">
+        <div class="col">
+          <label class="userinput"><b>Month</b></label>
+          <ion-datetime class="form-control userinput" formControlName="txtmonth" display-format="MM" placeholder="Select Month">
+          </ion-datetime>
+        </div>      
+        <div class="col">
+          <!-- <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right" (click)="monthwiseapi()">
+          <ion-icon name="filter"></ion-icon>
+          Get Record(s)
+        </button> -->
+
+        <label class="userinput" style="color: #474747;"><b>To Mill</b></label>   
+        <select formControlName="select_mill" class="form-control userinput">          
+          <option value="">Minsawi</option>
+        </select>
+        </div>  
+      </div>
+
+      <div style="margin-right: 10px;">        
+        <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right" (click)="monthwiseapi()">          
+          Go
+        </button> 
+        </div>
+    </form>
+
+    <ion-row *ngIf="total_net_weight!=''">
+      <ion-card class="bg-yellow card-height-weight bottompad-10px" no-margin>
+        <span class="mdfont common-whitecolor">Volume Supplied To Date (Mill Weight) : {{total_net_weight}}</span>
+      </ion-card>
+    </ion-row>
+  </div>
+  
+  <div class="card">
+    <form [formGroup]="secondrecordForm">
+      <div class="form-row">
+        <div class="col">
+          <ion-datetime class="form-control userinput" formControlName="fromdate" display-format="YYYY-MM-DD">
+          </ion-datetime>
+        </div>
+        <div class="userinput" style="margin-top: 10px;">To</div>
+        <div class="col">
+          <ion-datetime class="form-control userinput" formControlName="todate" display-format="YYYY-MM-DD">
+          </ion-datetime>
+        </div>
+      </div>
+
+      <div style="margin-right: 15px;">
+        <button type="button" class="btn btn-outline-info btn-sm float-right"
+          (click)="datewiseapi()">
+          Get Records
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="home-box">
+    <div class="h6 text-dark" style="margin-left: 10px;"><b>Today's Records</b></div>   
+
+    <div class="card gedf-card margin-bottom" *ngFor="let value of secondrecordsList">
+      <div class="card-header">
+        <div>
+          <div class="h7 text-muted">Date: {{value.date}}</div>          
+
+          <div class="h7 text-muted">Destination: {{value.destination_name}}</div>
+
+          <div class="h7 text-muted">Time Left: {{value.started_time}}</div> 
+
+          <div class="h7 text-muted">Time Arrived: {{value.security_intime}}</div> 
+
+          <div class="h7 text-muted">Supplier Weight: {{value.supplier_weight}} Kgs</div>
+
+          <div class="h7 text-muted">Mill Weight: {{value.net_weight}} Kgs</div>
+
+          <div class="h7 text-muted" *ngIf="value.final_oer == ''">Final OER : -</div>              
+          <div class="h7 text-muted" *ngIf="value.final_oer != ''">Final OER : {{value.final_oer}}</div>
+          
+        </div>
+      </div>
+
+      <ion-row class="row-reverse">          
+        <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_detailAction(value)">
+        <ion-icon name="document"></ion-icon>
+        Mill Grading Report
+        </button>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

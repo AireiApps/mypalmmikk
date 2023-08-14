@@ -1,0 +1,181 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{mill_name}}</ion-title>
+
+    <!--ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="callmodalcontroller('')">
+        <ion-icon name="calendar"></ion-icon>
+      </ion-button>
+    </ion-buttons-->
+
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+        <span class="mdfont common-blackcolor">{{userlist.welcome_msg}}</span>
+        <ion-row>
+          <span class="common-blackcolor"> </span>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+
+    <ion-row style="margin-top: 40px">
+      <!-- Commented on 31.10.2020 by Suresh Kumar K
+      
+        <ion-col size="4"></ion-col>
+
+      <ion-col size="4" (click)="dashboard()" style="align-items: center;">
+        <span class="rounded-icon">            
+          <img src="../../assets/img/ceographreport.png" class="icon"/>          
+        </span>
+        <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px;"><b>Dashboard</b></p>
+      </ion-col>
+
+      <ion-col size="4"></ion-col> -->
+
+      <ion-col size="2"></ion-col>
+
+      <ion-col size="3" (click)="dashboard()" style="align-items: center">
+        <span class="rounded-icon">
+          <img src="../../assets/img/ceographreport.png" class="icon" />
+        </span>
+        <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+          <b>Dashboard</b>
+        </p>
+      </ion-col>
+
+      <ion-col size="2"></ion-col>
+
+      <ion-col size="3" (click)="reviewreport()" style="align-items: center" *ngIf="userlist.desigId==10">
+        <span class="rounded-icon">
+          <img src="../../assets/img/summary.png" class="icon" />
+        </span>
+        <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+          <b>Summary</b>
+        </p>
+      </ion-col>
+
+      <ion-col size="3" (click)="reviewreport()" style="align-items: center" *ngIf="userlist.desigId==1 || userlist.desigId==45">
+        <span class="rounded-icon">
+          <img src="../../assets/img/profitandloss.png" class="icon" />
+        </span>
+        <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+          <b>Review</b>
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col
+        size="3"
+        (click)="approvals()"
+        style="align-items: center"
+        *ngIf="userlist.desigId!=1 && userlist.desigId!=45"
+      >
+        <span class="rounded-icon">
+          <img src="../../assets/img/palmoilquoteapproval.png" class="icon" />
+          <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+            <b>Approvals</b>
+          </p>
+        </span>
+      </ion-col>
+
+      <ion-col
+        size="3"
+        (click)="hourly()"
+        style="align-items: center"
+        *ngIf="userlist.desigId==1 || userlist.desigId==45"
+      >
+        <span class="rounded-icon">
+          <img src="../../assets/img/palmoilquoteapproval.png" class="icon" />
+          <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+            <b>Hourly Reports</b>
+          </p>
+        </span>
+      </ion-col>
+
+      <ion-col size="6" style="align-items: center">
+        <span class="rounded-logo">
+          <img src="../../assets/img/logo.png" class="logo-login" />
+        </span>
+      </ion-col>
+
+      <ion-col size="3" (click)="reports()" style="align-items: center">
+        <span class="rounded-icon">
+          <img src="../../assets/img/ceoreport.png" class="icon" />
+          <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+            <b>Daily Reports</b>
+          </p>
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 10px">
+      <!-- Commented on 31.10.2020 by Suresh Kumar K
+      <ion-col size="4"></ion-col>
+
+      <ion-col size="4" (click)="logout()" style="align-items: center;">
+        <span class="rounded-icon">            
+          <img src="../../assets/img/logout.png" class="icon"/>
+          <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px;"><b>LogOut</b></p>
+        </span>
+      </ion-col>
+
+      <ion-col size="4"></ion-col> -->
+
+      <ion-col size="2"></ion-col>
+
+      <ion-col
+        size="3"
+        (click)="ffblivetrackingreport()"
+        style="align-items: center"
+        *ngIf="userlist.desigId==1 || userlist.desigId==45"
+      >
+        <span class="rounded-icon">
+          <img src="../../assets/img/livetracking.png" class="icon" />
+          <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+            <b>FFB Live Tracking</b>
+          </p>
+        </span>
+      </ion-col>
+
+      <ion-col size="3" (click)="useractivity()" style="align-items: center" *ngIf="userlist.desigId==10">
+        <span class="rounded-icon">
+          <img src="../../assets/img/preventivemaintenance.png" class="icon" />
+          <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+            <b>User Activity</b>
+          </p>
+        </span>
+      </ion-col>
+
+      <ion-col size="2"></ion-col>
+
+      <ion-col size="3" (click)="monthlyreports()" style="align-items: center" *ngIf="userlist.desigId==1 || userlist.desigId==45">
+        <span class="rounded-icon">
+          <img src="../../assets/img/ceomonthlyreport.png" class="icon" />
+          <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+            <b>Monthly Reports</b>
+          </p>
+        </span>
+      </ion-col>
+
+      <ion-col size="3" (click)="monthlyreports()" style="align-items: center" *ngIf="userlist.desigId==10">
+        <span class="rounded-icon">
+          <img src="../../assets/img/profitandloss.png" class="icon" />
+          <p style="text-shadow: 0 0 3px #f5f1e4; font-size: 12px">
+            <b>Financial Reports</b>
+          </p>
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

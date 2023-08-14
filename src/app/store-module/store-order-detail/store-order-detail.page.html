@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Items Details</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="h6 text-muted">Date :</div>
+    </div>
+    <div class="col">
+      <div class="h7 text-muted">{{storedetail.date}}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="h6 text-muted">Department :</div>
+    </div>
+    <div class="col">
+      <div class="h7 text-muted">{{storedetail.department}}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="h6 text-muted">Name :</div>
+    </div>
+    <div class="col">
+      <div class="h7 text-muted">{{storedetail.requester_name}}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="h6 text-muted">Type :</div>
+    </div>
+    <div class="col">
+      <div class="h7 text-muted">{{storedetail.requestName}}</div>
+    </div>
+  </div>
+
+  <div class="home-box">
+    <div class="card gedf-card margin-bottom" *ngFor="let value of recentStore">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="ml-2">
+              <!-- <div class="h7 text-muted">Part Code : {{value.item_code}}</div> -->
+              <div class="h7 text-muted">Part Name : {{value.item_name}}</div>
+              <div class="h7 text-muted">Station : {{value.station_name}}</div>
+              <div class="h7 text-muted">Machinery : {{value.location_name}}</div>
+              <div class="h7 text-muted">Qty : {{value.qty}}</div>
+              <div class="h7 text-muted">Unit : {{value.unit}}</div>
+              <div class="h7 text-muted">Stock : {{value.stock}}</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

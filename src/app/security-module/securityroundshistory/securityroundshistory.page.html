@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Security Rounds History</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="roundsForm">
+      <div class="form-row">
+        <div class="col-4">
+          <ion-datetime style="font-size: 14px;" class="form-control" formControlName="from_date" display-format="DD-MM-YYYY"></ion-datetime>
+        </div>
+        
+        <div class="col-4">
+          <ion-datetime style="font-size: 14px;" class="form-control" formControlName="to_date" display-format="DD-MM-YYYY"></ion-datetime>
+        </div>
+
+        <div class="col-4">
+          <button type="button" style="font-size: 14px;" class="btn btn-outline-info btn-sm float-right"
+          (click)="callAPI()">
+          <ion-icon name="filter"></ion-icon>
+          Get
+        </button>
+        </div>
+      </div>
+<!-- 
+      <div style="padding-right: 12px;">
+        <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right"
+          (click)="callAPI()">
+          <ion-icon name="filter"></ion-icon>
+          Get Record(s)
+        </button>
+      </div> -->
+    </form>  
+    
+    <div class="home-box">
+
+    <div class="card gedf-card margin-bottom" *ngFor="let value of roundsList">
+      <div class="card-header" style="text-align: center;">
+        <div class="h6 text-danger"><b>Location-{{value.location}}</b></div>
+      </div>
+
+      <div class="card-body">                                  
+           <div class="h7 text-muted">Comments :{{value.comments}}</div>                    
+          
+           <div style="margin-top: 10px;">
+            <div class="imagePreview" *ngIf="value.imageLocation == ''"></div>
+            <div class="imagePresent" *ngIf="value.imageLocation != ''">
+              <img class="imagePresent" (click)="viewimage(value.imageLocation)" src="{{value.imageLocation}}" />
+            </div>
+          </div>                         
+      </div>
+
+      <div class="card-footer">
+        <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+      </div>
+    </div>
+    </div>
+    
+</ion-content>

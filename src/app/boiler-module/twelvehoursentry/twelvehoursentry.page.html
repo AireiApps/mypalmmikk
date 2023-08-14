@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">{{ '12HOURSLOG.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="h6" style="text-align: center; margin-top: 10px">
+    <b>{{ '12HOURSLOG.date' | translate}}: {{currentdate}}</b>
+  </div>
+
+  <div class="home-box">
+    <div class="card">
+      <form [formGroup]="fourhoursentryForm">
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">
+              {{ '12HOURSLOG.frequency' | translate}} <sup>*</sup>
+            </div>
+          </div>
+
+          <div class="col">
+            <ion-datetime
+              class="h7 form-control"
+              formControlName="pickhour"
+              display-format="HH:00"
+              placeholder="{{ '12HOURSLOG.selecthour' | translate}}"
+            ></ion-datetime>
+          </div>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">
+              {{ '12HOURSLOG.watergageglasstesting' | translate}} <sup>*</sup>
+            </div>
+          </ion-col>
+
+          <ion-col size="4">
+            <ion-datetime
+              class="h7 form-control"
+              formControlName="select_watergageglasstesting"
+              display-format="HH:mm"
+              placeholder="{{ '12HOURSLOG.selecttime' | translate}}"
+            ></ion-datetime>
+          </ion-col>
+
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>Time</b></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">
+              {{ '12HOURSLOG.lowwaterleveltesting' | translate}} <sup>*</sup>
+            </div>
+          </ion-col>
+
+          <ion-col size="4">
+            <ion-datetime
+              class="h7 form-control"
+              formControlName="select_lowwaterleveltesting"
+              display-format="HH:mm"
+              placeholder="{{ '12HOURSLOG.selecttime' | translate}}"
+            ></ion-datetime>
+          </ion-col>
+
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>Time</b></div>
+          </ion-col>
+        </ion-row>
+
+        <div style="text-align: center">
+          <button
+            type="submit"
+            class="btn btn-success"
+            (click)="boilerlog_save()"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

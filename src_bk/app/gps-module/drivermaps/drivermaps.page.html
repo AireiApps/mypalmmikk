@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{mill_name}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-row>
+    <div class="bg-yellow card-height" no-margin>
+      <span class="mdfont common-whitecolor header-font">{{userlist.welcome_msg}}</span>
+      <ion-row>
+        <span class="common-whitecolor header-font">
+          Have a safe journey to
+        </span>
+
+        <span class="common-whitecolor header-font">
+          MINSAWI INDUSTRIES(KUALA KANGSAR) SDN. BHD
+        </span>        
+      </ion-row>
+    </div>
+  </ion-row> -->
+  <ion-grid>
+    <ion-row>
+      <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+        <span class="mdfont common-whitecolor">{{userlist.welcome_msg}}</span>
+        <br>
+        <span class="common-whitecolor header-font">
+          Have a safe journey to
+        </span>
+        <br>
+        <span class="h7 common-whitecolor">
+          MINSAWI INDUSTRIES(KUALA KANGSAR) SDN. BHD
+        </span>       
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+
+  <div style="margin-left: 5px;">
+    <button type="button" class="btn btn-outline-danger btn-sm margin-5px" (click)="btn_RecentTrack()">
+    <ion-icon name="location-outline"></ion-icon> Recent Tracking
+  </button>
+  </div>
+
+  <div class="home-box">
+  <div class="card gedf-card margin-bottom" *ngFor="let value of driversArr">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="ml-2">
+            <div class="h7 text-muted">Net Weight : {{value.net_weight}}</div>
+            <div class="h7 text-muted">Supplier Weight : {{value.supplier_weight}}</div>
+            <div class="h7 text-muted">Date : {{value.date}}</div>
+            <div class="h7 text-muted">Vehicle No: {{value.vehicle_name}}</div>
+            <div class="h7 text-muted">Driver: {{value.driver_name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center" style="float: right;" *ngIf="value.status">
+        <app-oval-shape status="{{ value.status }}"></app-oval-shape>
+        <!-- <ion-card class="bg-green bottompad-10px status-card" no-margin>
+          <ion-row>
+            <span class="common-whitecolor" style="margin-left: 10px;">
+              {{ value.status }}
+            </span>
+          </ion-row>
+        </ion-card> -->
+      </div>
+
+    </div>
+    <!-- <div class="card-body">
+      <p class="card-text">
+        {{ value.desc }}
+      </p>
+
+    </div> -->
+    <!-- <ion-row class="marigin-10px row-reverse"> -->
+
+    <ion-row class="row-reverse">
+      <button type="button" class="btn btn-outline-danger btn-sm margin-5px" (click)="btn_mapAction(value)"
+        *ngIf="value.status != 'Lorry to Start'">
+        <ion-icon name="location-outline"></ion-icon> Map
+      </button>
+      <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_detailAction(value)">
+        <ion-icon name="document"></ion-icon>
+        Details
+      </button>
+      <button type="button" class="btn btn-outline-primary btn-sm margin-5px" (click)="confirmApproveVechicle(value)"
+        *ngIf="value.status == 'Lorry to Start'">
+        <ion-icon name="document"></ion-icon>
+        Start
+      </button>
+    </ion-row>
+
+
+    <!-- <button type="button" class="btn btn-info card-link ion-text-end btn-color btn-sm" (click)="btn_mapAction()">
+        <ion-icon name="map"></ion-icon> Map
+      </button>
+      <button type="button" class="btn btn-info card-link ion-text-end btn-yellow-color btn-sm"
+        style="margin-right: 10px;" (click)="btn_detailAction()">
+        <ion-icon name="document"></ion-icon>
+        Details
+      </button> -->
+
+    <!-- </ion-row> -->
+
+
+  </div>
+
+  </div>
+
+
+
+</ion-content>

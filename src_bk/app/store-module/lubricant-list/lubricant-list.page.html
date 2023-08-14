@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Lubricant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row class="row-reverse">
+    <ion-col size="12">
+      <button type="button" class="btn btn-outline-danger btn-sm margin-5px" (click)="btn_AddLubricant()">
+        <ion-icon name="newspaper"></ion-icon> Add Lubricant
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <div class="home-box">
+    <ion-row style="padding-top: 40px;padding-bottom: 10px;">
+      <ion-label>Lubricant List(s)</ion-label>
+    </ion-row>
+    <div>
+      <div class="card gedf-card margin-bottom" *ngFor="let value of lubricantlist">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 text-danger">Year : {{value.year}}</div>
+                <div class="h7 text-muted">Month : {{value.month}}</div>
+                <div class="h7 text-muted">Week : {{value.week}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-row class="row-reverse">
+          <button type="button" class="btn btn-outline-warning btn-sm margin-5px" (click)="btn_Edit(value)">
+            <ion-icon name="create-outline"></ion-icon>
+            Edit
+          </button>
+          <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_View(value)">
+            <ion-icon name="eye-outline"></ion-icon>
+            View
+          </button>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+</ion-content>

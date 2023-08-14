@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">ShutDown Maintenance Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box">
+    <div>
+      <div class="card gedf-card margin-bottom" *ngFor="let value of shutdownmaintenancelist">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 text-danger">Date : {{value.date}}</div>
+                <div class="h7 text-muted">FromTime : {{value.from_time}}</div>
+                <div class="h7 text-muted">ToTime : {{value.to_time}}</div>
+                <div class="h7 text-muted">TeamLead : {{value.team_lead}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ion-row class="row-reverse">
+          <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_View(value)">
+            <ion-icon name="eye-outline"></ion-icon>
+            View
+          </button>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+</ion-content>

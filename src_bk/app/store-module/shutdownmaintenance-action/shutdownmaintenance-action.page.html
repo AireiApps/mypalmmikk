@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Action ShutDown Maintenance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="sdmpdetailForm">
+    <ion-card class="card">
+      <div class="col" style="margin-top: 10px;">
+        <div>Date</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" formControlName="sdmpdate" value="{{getdate}}" readonly>
+        </div>
+      </div>
+
+      <div class="col">
+        <div>Time</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" formControlName="fromtime" value="{{getfromtime}}" readonly>
+        </div>
+        <div style="margin-top: 10px;">To</div>
+        <div class="col">
+          <input type="text" class="form-control" formControlName="totime" value="{{gettotime}}" readonly>
+        </div>
+      </div>
+
+      <div class="col">
+        <div>Type</div>
+      </div>
+      
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" formControlName="type" value="{{gettype}}" readonly>
+        </div>
+      </div>
+
+      <div class="col" style="margin-top: 10px;">
+        <div>Team Lead</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" formControlName="teamlead" value="{{getteamlead}}" readonly>
+        </div>
+      </div>
+    </ion-card>
+
+    <ion-card class="card">
+      <div class="home-box">
+        <ion-row style="padding-bottom: 10px;">
+          <ion-label style="color: black;">Fitter List(s)</ion-label>
+        </ion-row>
+
+        <div class="card gedf-card margin-bottom" *ngFor="let value of fitterlist">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 text-danger"><b>Fitter :{{value.username}}</b></div>                   
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+
+    <!-- <ion-card class="card"> -->
+      <div class="home-box">
+        <ion-row style="padding-bottom: 10px;">
+          <ion-label style="color: black;">Job List(s)</ion-label>
+        </ion-row>
+
+        <div class="card gedf-card margin-bottom" *ngFor="let value of joblist">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 text-danger"><b>Job :{{value.username}}</b></div>                   
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- </ion-card> -->
+
+    <div class="col">
+      <div>Action</div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="sdmpaction" class="form-control">
+          <option value="" selected>Select Action</option>
+          <option value="Completed">Completed</option>
+          <option value="Pending">Pending</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col" style="margin-top: 10px;">
+      <div>Comments</div>
+    </div>
+
+    <div class="form-row" style="margin-top: 5x;">
+      <div class="col">
+        <textarea class="form-control" formControlName="taComments" rows="5" placeholder="Enter Comments"></textarea>
+      </div>
+    </div>
+
+    <ion-row>
+      <ion-col size="12">
+        <button type="submit" class="btn btn-success" (click)="btn_save()" style="float: right;margin: 20px;">Submit</button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

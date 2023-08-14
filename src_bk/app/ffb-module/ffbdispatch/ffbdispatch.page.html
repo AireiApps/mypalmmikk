@@ -1,0 +1,125 @@
+<ion-header>
+
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav" (click)="gotohome()"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">FFB Dispatch</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <!-- <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tabs_segment">
+    <ion-segment-button value="ffb_delivery">
+      <ion-label>FFB Delivery</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="today_delivery">
+      <ion-label>List of Today's Delivery</ion-label>
+    </ion-segment-button>
+  </ion-segment> -->
+
+  <div class="home-box">
+    <div class="card">
+      <form [formGroup]="ffbsaveform">
+        <!-- <div class="form-group">
+          <label>Delivery Date</label>
+          <input type="text" class="form-control" formControlName="date" readonly="true">
+        </div> -->
+
+        <div class="form-group">
+          <label class="h7 text-dark">Vehicle Number *</label>
+
+          <select class="h7 form-control" name="branch" formControlName="vehicleid">
+            <option value="">Select Vehicle Number</option>
+            <option value="{{ value.vehicle_det_id }}" *ngFor="let value of vechicleList">{{ value.vehicle_no }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="h7 text-dark">Driver Name *</label>
+          <select class="h7 form-control" name="branch" formControlName="driverid">
+            <option value="">Select Driver Name</option>
+            <option value="{{ value.driver_id }}" *ngFor="let value of driverList">{{ value.driver_name }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="h7 text-dark">FFB Supplier Weight *</label>
+          <input type="number" class="h7 form-control" formControlName="net_weight">
+        </div>
+        <div class="form-group">
+          <label class="h7 text-dark">Weighbridge Ticket Number *</label>
+          <input type="number" class="h7 form-control" formControlName="weighbridge_ticket_no">
+        </div>
+
+        <div class="form-group">
+          <label class="h7 text-dark">Protection Seal Number</label>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <input type="number" class="h7 form-control" formControlName="professionalseal1">
+              </ion-col>
+              <ion-col size="6">
+                <input type="number" class="h7 form-control" formControlName="professionalseal2">
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="6">
+                <input type="number" class="h7 form-control" formControlName="professionalseal3">
+              </ion-col>
+              <ion-col size="6">
+                <input type="number" class="h7 form-control" formControlName="professionalseal4">
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row>
+              <ion-col size="6">
+                <input type="number" class="h7 form-control" formControlName="professionalseal5">
+              </ion-col>
+              <ion-col size="6">
+                <input type="number" class="h7 form-control" formControlName="professionalseal6">
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <!-- <div class="form-group">
+          <label class="h7 text-dark">Supplier Dispatch Note</label>
+
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right;margin-right: 10px;">
+              <div class="imagePreview" *ngIf="imagePaths.dispatchnote == ''"></div>
+              <div class="imagePresent" *ngIf="imagePaths.dispatchnote != ''">
+                <img class="imagePresent" src="{{imagePaths.dispatchnote}}" />
+              </div>
+            </div>
+  
+            <div class="col-sm-4" style="text-align: right;margin-right: 10px;">
+              <label class="btn btn-warning">
+                Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                  style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ffbImageUpload('FFBSupplier')">
+              </label>
+            </div>          
+          </div>
+        </div> -->
+
+        <div class="form-check" style="margin-top: 10px;">
+          <input type="checkbox" class="form-check-input" id="declarationcheckbox" formControlName="declarationcheckbox">
+          <label class="h7 form-check-label declarationinput text-muted" for="declarationcheckbox">Please be informed that the “Live Location” will be activated only if Driver clicks “Start” button in his respective MyPalm login page. Kindly ensure that Driver is informed about this particular assignment.</label>
+        </div>
+        
+        <button type="submit" class="btn btn-success" (click)="ffb_Save()" [disabled]="disableButton" style="float: right;margin: 10px;">Send to Driver</button>
+      </form>
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">ShutDown Maintenance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row class="row-reverse">
+    <ion-col size="12">
+      <button type="button" class="btn btn-outline-danger btn-sm margin-5px" (click)="btn_AddShutDownMaintenance()">
+        <ion-icon name="newspaper"></ion-icon> Add ShutDown Maintenance
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <div class="home-box">
+    <ion-row style="margin-top: 60px; margin-bottom: 10px;">
+      <ion-label>ShutDown Maintenance List(s)</ion-label>
+    </ion-row>
+    <div>
+      <div class="card gedf-card margin-bottom" *ngFor="let value of shutdownmaintenancelist">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 text-danger">Date : {{value.date}}</div>
+                <div class="h7 text-muted">FromTime : {{value.from_time}}</div>
+                <div class="h7 text-muted">ToTime : {{value.to_time}}</div>
+                <div class="h7 text-muted">TeamLead : {{value.team_lead}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-row class="row-reverse">
+          <button type="button" *ngIf="value.editflag>0" class="btn btn-outline-warning btn-sm margin-5px" (click)="btn_Edit(value)">
+            <ion-icon name="create-outline"></ion-icon>
+            Edit
+          </button>
+
+          <button type="button" *ngIf="value.actionflag>0" class="btn btn-outline-danger btn-sm margin-5px" (click)="btn_Action(value)">
+            <ion-icon name="checkbox-outline"></ion-icon>
+            Action
+          </button>
+
+          <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_View(value)">
+            <ion-icon name="eye-outline"></ion-icon>
+            View
+          </button>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+</ion-content>

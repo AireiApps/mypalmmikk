@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav" (click)="back()"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Manually Receive FFB</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="ffbForm">
+    <ion-row style="align-items: center;">
+      <ion-col size="9">
+        <input type="text" class="form-control userinputfont" formControlName="txt_supplier" placeholder="Search Supplier" readonly>
+      </ion-col>
+
+      <ion-col size="3" style="text-align: right;">
+        <button type="submit" class="btn btn-outline-danger btn-sm" (click)="searchsupplier()">Search</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-card class="card" *ngIf="supplierselected == true">
+      <div class="form-row">
+        <div class="col">
+          <div class="h6 text-dark h6marigintop">Vehicle :</div>
+        </div>
+        <div class="col">
+          <!-- <select class="form-control userinputfont" formControlName="select_vehicle">
+            <option value="">Select Vehicle</option>
+            <option value="{{ value.vehicle_det_id }}" *ngFor="let value of vechicleList">{{ value.vehicle_no }}
+            </option>
+          </select> -->
+
+          <input type="text" class="form-control userinputfont" formControlName="txt_vehicle" placeholder="Enter Vehicle Number" (keypress)="eventHandler($event)">
+        </div>
+      </div>
+
+      <!-- <div class="form-row">
+        <label class="h6 text-dark" style="margin-left: 5px;">Lorry Image</label>      
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right;margin-right: 8px;">
+              <div class="imagePreview" *ngIf="imagePaths.ffbpath == ''"></div>
+              <div class="imagePresent" *ngIf="imagePaths.ffbpath != ''">
+                <img class="imagePresent" [src]="imagePaths.ffbpath" /> 
+              </div>
+            </div>
+  
+            <div class="col-sm-4" style="text-align: right;margin-right: 8px;">
+              <label class="btn btn-warning">
+                Upload<input type="button" class="uploadFile img userinputfont" value="Upload Photo"
+                  style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ffbImageUpload('Security')">
+              </label>
+            </div>          
+          </div>
+      </div> -->
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h6 text-dark h6marigintop">Comments</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <textarea class="h6 form-control" formControlName="tacomments" placeholder="Enter Comments"></textarea>
+        </div>
+      </div>
+
+      <div style="text-align: right; margin: 12px;">
+        <button type="submit" class="btn btn-success" (click)="confirmApproveVechicle()" [disabled]="disableButton">Authorize</button>
+      </div>
+
+    </ion-card>
+  </form>
+</ion-content>

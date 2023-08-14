@@ -1,0 +1,283 @@
+<ion-header>
+
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Settings</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tabs_segment">
+    <!-- <ion-segment-button value="update_profile">
+      <ion-label>Profile</ion-label>
+    </ion-segment-button> -->
+    <ion-segment-button value="add_vechicle">
+      <ion-label>Add Vehicle</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="add_driver">
+      <ion-label>Add Driver</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+
+  <div [ngSwitch]="tabs_segment">
+    <div class="home-box" *ngSwitchCase="'update_profile'">
+      <div class="card">
+        <form [formGroup]="profileForm">
+          <div class="form-row">
+            <div class="col">
+              <div class="h7 text-dark">Company Name :</div>
+            </div>
+            <div class="col">
+              <div class="h7 text-dark">{{profileForm.get('company_name').value}}</div>
+              <!-- <input type="text" class="form-control" formControlName="company_name"> -->
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+
+              <div class="h7 text-dark">Company Code :</div>
+            </div>
+
+            <!-- <label>Company Code</label> -->
+            <div class="col">
+              <div class="h7 text-dark">{{profileForm.get('company_code').value}}</div>
+
+            </div>
+          </div>
+
+          <!-- <input type="text" class="form-control" formControlName="company_code"> -->
+          <div class="form-group">
+            <label class="h7 text-dark">Address</label>
+            <textarea class="h7 form-control" rows="5" formControlName="address1" readonly></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="h7 text-dark">Tel Number</label>
+            <input type="text" class="h7 form-control" formControlName="tel_no" readonly>
+          </div>
+
+          <div class="form-group">
+            <label class="h7 text-dark">Person in Charge</label>
+            <input type="text" class="h7 form-control" formControlName="persm_charge" readonly>
+          </div>
+
+
+
+          <div class="form-group">
+            <label class="h7 text-dark">Land Hectarage</label>
+            <input type="text" class="h7 form-control" formControlName="land_heetarage" readonly>
+          </div>
+
+
+
+          <div class="form-group">
+            <label class="h7 text-dark">MSPO Status</label>
+
+            <!-- <ion-radio-group lines="full" formControlName="mspocertified">
+              <ion-item lines="none">
+                <ion-label class=">Certified</ion-label>
+                <ion-radio color="success" slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-label class=">In Progress</ion-label>
+                <ion-radio color="danger" slot="start" value="0"></ion-radio>
+              </ion-item>
+            </ion-radio-group> -->
+
+            <div class="form-group">              
+              <input type="text" class="h7 form-control" formControlName="mspocertified" readonly>
+            </div>
+
+          </div>
+
+          <!-- <div class="form-row">
+            <label class="h7 text-dark">SSM Certificate</label>      
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;margin-right: 8px;">
+                  <div class="imagePreview" *ngIf="imgePaths.ssmno_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imgePaths.ssmno_path != ''">
+                    <img class="imagePresent" src="{{imgePaths.ssmno_path}}" />
+                  </div>
+                </div>
+      
+                <div class="col-sm-4" style="text-align: right;margin-right: 8px;">
+                  <label class="btn btn-warning">
+                    Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                      style="width: 0px;height: 0px;overflow: hidden;display:none" disabled=true   (click)="presentActionSheet('ssmNoFile')">
+                  </label>
+                </div>          
+              </div>
+          </div> -->
+
+          <!-- <div class="form-row">
+            <label class="h7 text-dark">MPOB License</label>      
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;margin-right: 8px;">
+                  <div class="imagePreview" *ngIf="imgePaths.mpob_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imgePaths.mpob_path != ''">
+                    <img class="imagePresent" src="{{imgePaths.mpob_path}}" />
+                  </div>
+                </div>
+      
+                <div class="col-sm-4" style="text-align: right;margin-right: 8px;">
+                  <label class="btn btn-warning">
+                    Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                      style="width: 0px;height: 0px;overflow: hidden;display:none" disabled=true (click)="presentActionSheet('mpobCertificateFile')">
+                  </label>
+                </div>          
+              </div>
+          </div> -->
+
+          <!-- <div class="form-row">
+            <label class="h7 text-dark">MSPO Certificate</label>      
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;margin-right: 8px;">
+                  <div class="imagePreview" *ngIf="imgePaths.mspo_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imgePaths.mspo_path != ''">
+                    <img class="imagePresent" src="{{imgePaths.mspo_path}}" />
+                  </div>
+                </div>
+      
+                <div class="col-sm-4" style="text-align: right;margin-right: 8px;">
+                  <label class="btn btn-warning">
+                    Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                      style="width: 0px;height: 0px;overflow: hidden;display:none" disabled=true (click)="presentActionSheet('mspoCertificateFile')">
+                  </label>
+                </div>          
+              </div>
+          </div> -->
+
+          <div style="text-align: center;">
+            <button type="submit" class="btn btn-success" (click)="btn_profilesave()" style="margin-top: 20px;">Save</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+
+
+    <div class="home-box" *ngSwitchCase="'add_vechicle'">
+      <div class="card" style="margin-bottom: 10px;">
+        <form [formGroup]="vechicleForm">
+
+          <label for="label" class="h7 text-dark">Vehicle
+            <sup>*</sup>
+          </label>
+          <!-- <select class="form-control" name="branch" formControlName="vechicle">
+            <option value="">Select Vehicle</option>
+            <option value="{{ value.vehicle_id }}" *ngFor="let value of vechicleArr">{{ value.vehicle_name }}</option>
+          </select> -->
+
+          <select class="h7 form-control" formControlName="vechicle" [(ngModel)]="selectvehicle.form">            
+            <option value="1">TRUCK</option>
+          </select>
+          
+          <div class="form-group" style="margin-top: 10px;">
+            <label class="h7 text-dark">Vehicle Number</label>
+            <input type="text" class="h7 form-control" formControlName="vehiclenumber">
+          </div>
+          <button type="submit" class="btn btn-success" (click)="btn_vechiclesave()" style="float: right;">Save</button>
+        </form>
+      </div>
+
+
+      <div class="card" style="margin-bottom: 10px;" *ngFor="let value of vechicleList">
+        <ion-row class="marigin-10px row-reverse">
+          <ion-col size="9">
+            <div class="h7 m-0">{{value.vehicle_name}}</div>
+            <div class="h7 text-dark">{{value.vehicle_no}}</div>
+
+          </ion-col>
+          <ion-col size="3">
+            <button type="button" class="btn btn-danger card-link ion-text-end btn-color"
+              (click)="btn_deletevechicleAction(value)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+          </ion-col>
+
+
+        </ion-row>
+
+
+      </div>
+
+      <!-- <div class="card gedf-card marigin-10px" >
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 m-0">{{value.vehicle_name}}</div>
+                <div class="h7 text-dark">{{value.vehicle_no}}</div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-info card-link ion-text-end btn-color" (click)="btn_deleteAction()">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+          </div>
+          <ion-row class="marigin-10px row-reverse">
+
+          </ion-row>
+        </div>
+      </div> -->
+
+
+    </div>
+
+    <div class="home-box" *ngSwitchCase="'add_driver'">
+      <div class="card" style="margin-bottom: 10px;">
+        <form [formGroup]="driverForm">
+          <div class="form-group">
+            <label class="h7 text-dark">Driver Name as per NRIC</label>
+            <input type="text" class="h7 form-control" formControlName="drivername">
+          </div>
+          <div class="form-group">
+            <label class="h7 text-dark">Driver NRIC</label>
+            <input type="text" class="h7 form-control" formControlName="drivernric">
+          </div>
+          <div class="form-group">
+            <label class="h7 text-dark">Driver Handphone Number</label>
+            <input type="number" class="h7 form-control" formControlName="mobile_no">
+          </div>
+          <button type="submit" class="btn btn-success" (click)="btn_driversave()" style="float: right; margin-right: 3px;">Save</button>
+        </form>
+      </div>
+
+
+      <div class="card" style="margin-bottom: 10px;" *ngFor="let value of driverList">
+        <ion-row class="marigin-10px row-reverse">
+          <ion-col size="9">
+            <div class="h7 m-0">{{value.driver_name}}</div>
+            <div class="h7 text-dark">{{value.driver_id}}</div>
+            <div class="h7 text-dark">{{value.driver_nric}}</div>
+
+          </ion-col>
+          <ion-col size="3">
+            <button type="button" class="btn btn-danger card-link ion-text-end btn-color"
+              (click)="btn_deletedriverAction(value)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+          </ion-col>
+
+
+        </ion-row>
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+</ion-content>

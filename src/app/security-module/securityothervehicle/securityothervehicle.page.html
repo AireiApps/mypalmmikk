@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav" (click)="back()"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Other Vehicle Entry</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="vehicleForm">
+
+    <ion-row style="align-items: center;">
+      <ion-col size="9">
+        <input type="text" class="form-control userinputfont" formControlName="txt_supplier" style="background-color: #FFFFFF;" placeholder="Search Supplier" readonly>
+      </ion-col>
+
+      <ion-col size="3" style="text-align: right;">
+        <button type="submit" class="btn btn-outline-danger btn-sm" (click)="searchsupplier()">Search</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-card class="card" *ngIf="supplierselected == true">
+
+      <!-- <div class="form-row">
+        <div class="col">          
+            <ion-toggle style="float: right;" formControlName="toggle_status" color="danger"></ion-toggle>          
+        </div>
+      </div> -->
+
+      
+    <div class="form-row">
+      <div class="col">
+        <div class="h6 text-dark">Type</div>
+        <ion-radio-group formControlName="type" [(ngModel)]="type_status">
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-radio slot="start" color="success" value="0"></ion-radio>
+                <ion-label>In</ion-label>             
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item lines="none">
+                <ion-radio slot="start" color="danger" value="1"></ion-radio>
+                <ion-label>Out</ion-label>              
+              </ion-item>
+            </ion-col>
+          </ion-row>  
+        </ion-radio-group>
+      </div>
+    </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label class="h6 text-dark">Customer Type *</label>
+          <input type="text" class="h6 form-control" style="background-color: #FFFFFF;" formControlName="txt_customertype" value="{{getCustomertype}}" readonly>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label class="h6 text-dark">Driver Name *</label>
+          <input type="text" class="h6 form-control" formControlName="txt_drivername" placeholder="Enter Driver Name">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label class="h6 text-dark">IC Number *</label>
+          <input type="text" class="h6 form-control" formControlName="txt_icnumber" placeholder="Enter IC Number">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label class="h6 text-dark">Vehicle Number *</label>
+          <input type="text" class="h6 form-control" formControlName="txt_vehiclenumber" placeholder="Enter Vehicle Number">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label class="h6 text-dark">Comments</label>
+          <textarea class="h6 form-control" formControlName="taComments" rows="2" placeholder="Enter Comments"></textarea>
+        </div>
+      </div>
+
+      <!-- <div class="form-row imgmarigin">
+        <label class="h6 text-dark">Image *</label>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8" style="text-align: right;">
+              <div class="imagePreview" *ngIf="imagePaths.vehicle_path == ''"></div>
+              <div class="imagePresent" *ngIf="imagePaths.vehicle_path != ''">
+                <img class="imagePresent" [src]="imagePaths.vehicle_path" />
+              </div>                                           
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4" style="text-align: right;">
+            <label class="btn btn-warning">
+              Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="ImageUpload()">
+            </label>
+          </div>
+          </div>
+        </div>
+      </div> -->
+
+      <ion-row style="text-align: center;">
+        <ion-col size="12">
+          <button type="submit" class="btn btn-success" (click)="btn_save()" [disabled]="disableButton">Submit</button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </form>
+</ion-content>

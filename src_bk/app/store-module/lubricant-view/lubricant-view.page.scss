@@ -1,0 +1,27 @@
+.home-box {
+    padding: 15px 15px 15px 15px;  
+}
+
+div.item {
+    text-align: center;
+    padding: 20px 0px 0px 0px;
+}
+
+.form-row{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.item-inner{
+    border-style: unset !important;
+}
+
+.card {
+    background-color: #f5f1e4; // black
+    margin-bottom: 10px !important;
+}
+
+input[readonly] {
+    background-color: #ffffff;
+}

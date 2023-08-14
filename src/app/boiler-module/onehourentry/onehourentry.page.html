@@ -1,0 +1,555 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <!-- <ion-back-button color="whitefav"></ion-back-button> -->
+      <ion-button color="whitefav" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">{{ '1HOURLOG.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #pageTop>
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tabs_segment">
+    <ion-segment-button value="BoilerPerformance">
+      <ion-label class="h7">{{ '1HOURLOG.boilerperformance' | translate}}</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="TurbinePerformance">
+      <ion-label class="h7">{{ '1HOURLOG.turbineperformance' | translate}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="h6" style="text-align: center; margin-top: 10px">
+    <b>{{ '1HOURLOG.date' | translate}}: {{currentdate}}</b>
+  </div>
+
+  <div [ngSwitch]="tabs_segment">
+    <div *ngSwitchCase="'BoilerPerformance'">
+      <form [formGroup]="boilerperformanceentryForm">
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">{{ '1HOURLOG.frequency' | translate}} <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <ion-datetime
+              class="h7 form-control"
+              formControlName="pick_bphour"
+              display-format="HH:00"
+              placeholder="Select Hour"
+            ></ion-datetime>
+          </div>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.boilerpressure' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_boilerpressure"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>psi</b></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.steamoutput' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_steamoutput"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>ton/hr</b></div>
+          </ion-col>
+        </ion-row>
+
+        <!-- <div class="form-row imgmarigin">
+          <label class="h7 text-dark"
+            >{{ '1HOURLOG.boilerpressuresteamoutputimage' | translate}}</label
+          >
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div
+                  class="imagePreview"
+                  *ngIf="imagePaths.boilerpressuresteamoutputpath == ''"
+                ></div>
+                <div
+                  class="imagePresent"
+                  *ngIf="imagePaths.boilerpressuresteamoutputpath != ''"
+                >
+                  <img
+                    class="imagePresent"
+                    [src]="imagePaths.boilerpressuresteamoutputpath"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                    type="button"
+                    class="uploadFile img"
+                    value="Upload Photo"
+                    style="
+                      width: 0px;
+                      height: 0px;
+                      overflow: hidden;
+                      display: none;
+                    "
+                    (click)="ImageUpload('BoilerPressureSteamOutput')"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <hr />
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.boilerwaterlevel' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_boilerwaterlevel"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>%</b></div>
+          </ion-col>
+        </ion-row>
+
+        <!-- <div class="form-row imgmarigin">
+          <label class="h7 text-dark">{{ '1HOURLOG.boilerwaterlevelimage' | translate}}</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div
+                  class="imagePreview"
+                  *ngIf="imagePaths.boilerwaterlevelpath == ''"
+                ></div>
+                <div
+                  class="imagePresent"
+                  *ngIf="imagePaths.boilerwaterlevelpath != ''"
+                >
+                  <img
+                    class="imagePresent"
+                    [src]="imagePaths.boilerwaterlevelpath"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                    type="button"
+                    class="uploadFile img"
+                    value="Upload Photo"
+                    style="
+                      width: 0px;
+                      height: 0px;
+                      overflow: hidden;
+                      display: none;
+                    "
+                    (click)="ImageUpload('BoilerWaterLevel')"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <hr />
+
+        <div class="h7 text-dark" style="text-align: center">
+          <b>{{ '1HOURLOG.boilersmokeanalysis' | translate}}</b>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.opacity' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_opacity"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>%</b></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.concentration' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_concentration"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark">
+              <b>mg/m<sup>3</sup></b>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <!-- <div class="form-row imgmarigin">
+          <label class="h7 text-dark">{{ '1HOURLOG.smokeanalysisimage' | translate}}</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div
+                  class="imagePreview"
+                  *ngIf="imagePaths.smokeanalysispath == ''"
+                ></div>
+                <div
+                  class="imagePresent"
+                  *ngIf="imagePaths.smokeanalysispath != ''"
+                >
+                  <img
+                    class="imagePresent"
+                    [src]="imagePaths.smokeanalysispath"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                    type="button"
+                    class="uploadFile img"
+                    value="Upload Photo"
+                    style="
+                      width: 0px;
+                      height: 0px;
+                      overflow: hidden;
+                      display: none;
+                    "
+                    (click)="ImageUpload('SteamAnalysis')"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div style="text-align: center">
+          <button
+            type="submit"
+            class="btn btn-success"
+            (click)="boilerperformance_save()"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+          {{ 'GENERALBUTTON.savebutton' | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngSwitchCase="'TurbinePerformance'">
+      <form [formGroup]="turbineperformanceentryForm">
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark">{{ '1HOURLOG.frequency' | translate}} <sup>*</sup></div>
+          </div>
+
+          <div class="col">
+            <!-- <ion-datetime
+              class="h7 form-control"
+              formControlName="pick_tphour"
+              display-format="HH:00"
+              placeholder="Select Hour"
+            ></ion-datetime> -->
+            <input
+              type="text"
+              class="h7 form-control"
+              style="background-color: white"
+              formControlName="pick_tphour"
+              readonly
+            />
+          </div>
+        </div>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.inletpressure' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_inletpressure"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>bar</b></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.nozzlepressure' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_nozzlepressure"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>bar</b></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.oilpressure' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_oilpressure"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>bar</b></div>
+          </ion-col>
+        </ion-row>
+
+        <hr />
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.powerconsumption' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_powerconsumption"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>kW</b></div>
+          </ion-col>
+        </ion-row>
+
+        <!-- <div class="form-row imgmarigin">
+          <label class="h7 text-dark">{{ '1HOURLOG.powerconsumptionimage' | translate}}</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div
+                  class="imagePreview"
+                  *ngIf="imagePaths.powerconsumptionpath == ''"
+                ></div>
+                <div
+                  class="imagePresent"
+                  *ngIf="imagePaths.powerconsumptionpath != ''"
+                >
+                  <img
+                    class="imagePresent"
+                    [src]="imagePaths.powerconsumptionpath"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                    type="button"
+                    class="uploadFile img"
+                    value="Upload Photo"
+                    style="
+                      width: 0px;
+                      height: 0px;
+                      overflow: hidden;
+                      display: none;
+                    "
+                    (click)="ImageUpload('PowerConsumption')"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <hr />
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.powerfrequency' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="4">
+            <input
+              type="number"
+              class="h7 form-control"
+              formControlName="txt_frequency"
+            />
+          </ion-col>
+          <ion-col size="2">
+            <div class="h7 text-dark"><b>Hz</b></div>
+          </ion-col>
+        </ion-row>
+
+        <!-- <div class="form-row imgmarigin">
+          <label class="h7 text-dark">{{ '1HOURLOG.powerfrequencyimage' | translate}}</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div
+                  class="imagePreview"
+                  *ngIf="imagePaths.frequencypath == ''"
+                ></div>
+                <div
+                  class="imagePresent"
+                  *ngIf="imagePaths.frequencypath != ''"
+                >
+                  <img class="imagePresent" [src]="imagePaths.frequencypath" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                    type="button"
+                    class="uploadFile img"
+                    value="Upload Photo"
+                    style="
+                      width: 0px;
+                      height: 0px;
+                      overflow: hidden;
+                      display: none;
+                    "
+                    (click)="ImageUpload('Frequency')"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <hr />
+
+        <ion-row class="form-row">
+          <ion-col size="6">
+            <div class="h7 text-dark">{{ '1HOURLOG.powerdistribution' | translate}} <sup>*</sup></div>
+          </ion-col>
+          <ion-col size="6">
+            <select
+              formControlName="select_powerdistribution"
+              class="h7 form-control text-dark"
+              (change)="powerdistributionchange($event)"
+            >
+              <option value="" selected disabled hidden>{{ '1HOURLOG.selectoption' | translate}}</option>
+              <option
+                *ngFor="let value of powerdistributionArr"
+                value="{{value.id}}"
+              >
+                {{ value.type }}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="form-row" *ngIf="isCommentsenable">
+          <ion-col size="12">
+            <div class="h7 text-dark">{{ '1HOURLOG.reason' | translate}}</div>
+            <textarea
+              class="h7 form-control text-dark"
+              formControlName="taReason"
+              rows="3"
+            ></textarea>
+          </ion-col>
+        </ion-row>
+
+        <!-- <div class="form-row imgmarigin">
+          <label class="h7 text-dark">{{ '1HOURLOG.powerdistributionimage' | translate}}</label>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 nopadding" style="text-align: right">
+                <div
+                  class="imagePreview"
+                  *ngIf="imagePaths.powerdistributionpath == ''"
+                ></div>
+                <div
+                  class="imagePresent"
+                  *ngIf="imagePaths.powerdistributionpath != ''"
+                >
+                  <img
+                    class="imagePresent"
+                    [src]="imagePaths.powerdistributionpath"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4 nopadding" style="text-align: right">
+                <label class="btn btn-warning">
+                  {{ 'GENERALBUTTON.uploadbutton' | translate}}<input
+                    type="button"
+                    class="uploadFile img"
+                    value="Upload Photo"
+                    style="
+                      width: 0px;
+                      height: 0px;
+                      overflow: hidden;
+                      display: none;
+                    "
+                    (click)="ImageUpload('PowerDistribution')"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div style="text-align: center">
+          <button
+            type="submit"
+            class="btn btn-success"
+            (click)="turbineperformance_save()"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+          {{ 'GENERALBUTTON.savebutton' | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

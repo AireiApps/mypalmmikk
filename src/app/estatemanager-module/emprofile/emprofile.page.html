@@ -1,0 +1,243 @@
+<ion-header>
+
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Profile</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tabs_segment">
+    <ion-segment-button value="profile">
+      <ion-label>Profile</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="person">
+      <ion-label>Add Person In-Charge</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="tabs_segment">
+    <div class="home-box" *ngSwitchCase="'profile'">
+      <div class="card">
+        <form [formGroup]="profileForm">
+          <div class="form-row">
+            <div class="col">
+              <div class="h6 text-dark userinput">Company Name :</div>
+            </div>
+            <div class="col">
+              <div class="h7 text-dark userinput">{{profileForm.get('company_name').value}}</div>
+              <!-- <input type="text" class="form-control" formControlName="company_name"> -->
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <div class="h6 text-dark userinput">Company Code :</div>
+            </div>
+
+            <!-- <label>Company Code</label> -->
+            <div class="col">
+              <div class="h7 text-dark userinput">{{profileForm.get('company_code').value}}</div>
+
+            </div>
+          </div>
+
+          <!-- <input type="text" class="form-control" formControlName="company_code"> -->
+          <div class="form-group">
+            <label class="h6 text-dark userinput">Address</label>
+            <textarea class="form-control userinput" rows="5" formControlName="address1"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="h6 text-dark userinput">Tel Number</label>
+            <input type="text" class="form-control userinput" formControlName="tel_no">
+          </div>
+
+          <div class="form-group">
+            <label class="h6 text-dark userinput">Manager Name</label>
+            <input type="text" class="form-control userinput" formControlName="persm_charge">
+          </div>
+
+
+
+          <div class="form-group">
+            <label class="h6 text-dark userinput">Land Hectarage</label>
+            <input type="text" class="form-control userinput" formControlName="land_heetarage">
+          </div>
+
+
+
+          <div class="form-group">
+            <label class="h6 text-dark userinput">MSPO Status</label>
+
+            <ion-radio-group lines="full" formControlName="mspocertified">
+              <ion-item lines="none">
+                <ion-label class="userinput">Certified</ion-label>
+                <ion-radio color="success" slot="start" value="1"></ion-radio>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-label class="userinput">In Progress</ion-label>
+                <ion-radio color="danger" slot="start" value="0"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+
+          </div>
+
+          <!-- <div class="form-row">
+            <label class="h6 text-dark userinput">SSM Certificate</label>      
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;margin-right: 8px;">
+                  <div class="imagePreview" *ngIf="imgePaths.ssmno_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imgePaths.ssmno_path != ''">
+                    <img class="imagePresent" src="{{imgePaths.ssmno_path}}" />
+                  </div>
+                </div>
+      
+                <div class="col-sm-4" style="text-align: right;margin-right: 8px;">
+                  <label class="btn btn-warning">
+                    Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                      style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="presentActionSheet('ssmNoFile')">
+                  </label>
+                </div>          
+              </div>
+          </div> -->
+
+          <!-- <div class="form-row">
+            <label class="h6 text-dark userinput">MPOB License</label>      
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;margin-right: 8px;">
+                  <div class="imagePreview" *ngIf="imgePaths.mpob_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imgePaths.mpob_path != ''">
+                    <img class="imagePresent" src="{{imgePaths.mpob_path}}" />
+                  </div>
+                </div>
+      
+                <div class="col-sm-4" style="text-align: right;margin-right: 8px;">
+                  <label class="btn btn-warning">
+                    Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                      style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="presentActionSheet('mpobCertificateFile')">
+                  </label>
+                </div>          
+              </div>
+          </div> -->
+
+          <!-- <div class="form-row">
+            <label class="h6 text-dark userinput">MSPO Certificate</label>      
+              <div class="row">
+                <div class="col-sm-8" style="text-align: right;margin-right: 8px;">
+                  <div class="imagePreview" *ngIf="imgePaths.mspo_path == ''"></div>
+                  <div class="imagePresent" *ngIf="imgePaths.mspo_path != ''">
+                    <img class="imagePresent" src="{{imgePaths.mspo_path}}" />
+                  </div>
+                </div>
+      
+                <div class="col-sm-4" style="text-align: right;margin-right: 8px;">
+                  <label class="btn btn-warning">
+                    Upload<input type="button" class="uploadFile img" value="Upload Photo"
+                      style="width: 0px;height: 0px;overflow: hidden;display:none" (click)="presentActionSheet('mspoCertificateFile')">
+                  </label>
+                </div>          
+              </div>
+          </div> -->
+
+          <div class="form-check" style="margin-top: 10px;">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label userinput" for="exampleCheck1">I guarantee that the information above are
+              correct</label>
+          </div>
+
+          <div style="text-align: center;">
+          <button type="submit" class="btn btn-success userinput" (click)="btn_profilesave()" style="margin-top: 20px;">Save</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+    <div class="home-box" *ngSwitchCase="'person'">
+      <div class="card" style="margin-bottom: 10px;">
+        <form [formGroup]="personForm">        
+          <div class="form-group">
+            <label class="h6 text-dark userinput">Person In-Charge Name</label>
+            <input type="text" class="form-control userinput" formControlName="txt_personincharename">
+          </div>
+
+          <div class="form-group">
+            <label class="h6 text-dark userinput">IC Number</label>
+            <input type="text" class="form-control userinput" formControlName="txt_icnumber">
+          </div>
+
+          <div class="form-group">
+            <label class="h6 text-dark userinput">Handphone Number</label>
+            <input type="number" class="form-control userinput" formControlName="txt_handphonenumber">
+          </div>
+
+          <div class="form-group">
+            <label class="h6 text-dark userinput">Username</label>
+            <input type="text" class="form-control userinput" formControlName="txt_username">
+          </div>
+
+          <div class="form-group">
+            <label class="h6 text-dark userinput">Password</label>
+            <input type="text" class="form-control userinput" formControlName="txt_password">
+          </div>
+
+          <div style="text-align: center;">
+            <button type="submit" class="btn btn-success userinput" (click)="btn_personsave()" style="margin-top: 10px;">Save</button>
+            </div>
+        </form>
+
+        <hr>
+        
+        <div class="h5 text-dark"  *ngIf="personList.length>0"><b>Person In-Charge List</b></div>   
+        
+
+        <div class="card gedf-card margin-bottom" *ngFor="let value of personList">          
+          
+          <div class="card-header">
+                <div>
+                  <div class="h6 text-dark" style="text-align: center;"><b>{{value.user_name}}</b></div>                    
+
+                  <div class="h7 text-muted">Date: {{value.insdt}}</div> 
+                </div>
+          </div>
+
+          <ion-row class="row-reverse">
+            <button type="button" class="btn btn-outline-danger btn-sm margin-5px" style="float: right;" (click)="btn_deleteuserAction(value)">
+              <ion-icon name="trash-outline"></ion-icon>
+              Delete
+            </button>
+          </ion-row>
+          
+        </div>
+
+        <!-- <div class="card gedf-card margin-bottom" *ngFor="let value of personList">
+          <div class="card-header">
+            <ion-row class="marigin-10px row-reverse">
+              <ion-col size="9">
+                <div class="h7 m-0">{{value.user_name}}</div>
+                <div class="h7 text-dark" style="float: right;">Date: {{value.insdt}}</div>
+    
+              </ion-col>
+              <ion-col size="3">
+                <button type="button" class="btn btn-danger card-link ion-text-end btn-color"
+                  (click)="btn_deleteuser(value)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </ion-col>    
+            </ion-row>  
+          </div>  
+        </div> -->
+
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

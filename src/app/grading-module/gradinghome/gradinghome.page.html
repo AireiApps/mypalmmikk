@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{ 'GRADINGHOME.title' | translate}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box">
+    <div *ngFor="let value of gradingArr">
+      <!--Normal Flow-->
+      <div class="card gedf-card margin-bottom" *ngIf="value.driver_name != ''">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 text-muted">
+                  {{ 'GRADINGHOME.suppliername' | translate}} : {{value.supplier_name}}
+                </div>
+                <div class="h7 text-muted">{{ 'GRADINGHOME.lorrynumber' | translate}} : {{value.vehicle_no}}</div>
+                <div class="h7 text-muted">{{ 'GRADINGHOME.date' | translate}} : {{value.intime}}</div>
+                <div class="h7 text-muted">
+                  {{ 'GRADINGHOME.drivername' | translate}} : {{value.driver_name}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="d-flex justify-content-between align-items-center"
+            style="float: right"
+            *ngIf="value.status"
+          >
+            <app-oval-shape status="{{ value.status }}"></app-oval-shape>
+            <!-- <ion-card class="bg-green bottompad-10px status-card" no-margin>
+            <ion-row>
+              <span class="common-whitecolor" style="margin-left: 10px;">
+                {{ value.status }}
+              </span>
+            </ion-row>
+          </ion-card> -->
+
+            <!-- <span class="lbl-desc lbl-direction-right status-font-size">
+            <div class="oval">
+             
+            </div>
+
+
+          </span> -->
+          </div>
+        </div>
+        <ion-row class="row-reverse">
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm margin-5px"
+            (click)="grading_check(value)"
+            style="margin: 5px"
+          >
+            <ion-icon name="document"></ion-icon>{{ 'GRADINGHOME.check' | translate}}
+          </button>
+
+          <!-- <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_detailAction(value)"
+          style="margin: 5px;">
+          <ion-icon name="document"></ion-icon>
+          Details
+        </button> -->
+        </ion-row>
+      </div>
+
+      <!--Bypass Flow-->
+      <div
+        class="card gedf-card margin-bottom"
+        style="background-color: #404040"
+        *ngIf="value.driver_name == ''"
+      >
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="ml-2">
+                <div class="h7 text-white">
+                  Supplier Name : {{value.supplier_name}}
+                </div>
+                <div class="h7 text-white">Lorry No: {{value.vehicle_no}}</div>
+                <div class="h7 text-white">Date : {{value.intime}}</div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="d-flex justify-content-between align-items-center"
+            style="float: right"
+            *ngIf="value.status"
+          >
+            <app-oval-shape status="{{ value.status }}"></app-oval-shape>
+            <!-- <ion-card class="bg-green bottompad-10px status-card" no-margin>
+            <ion-row>
+              <span class="common-whitecolor" style="margin-left: 10px;">
+                {{ value.status }}
+              </span>
+            </ion-row>
+          </ion-card> -->
+
+            <!-- <span class="lbl-desc lbl-direction-right status-font-size">
+            <div class="oval">
+             
+            </div>
+
+
+          </span> -->
+          </div>
+        </div>
+        <ion-row class="row-reverse">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm margin-5px"
+            (click)="grading_check(value)"
+            style="margin: 5px"
+          >
+            <ion-icon name="document"></ion-icon> Check
+          </button>
+
+          <!-- <button type="button" class="btn btn-success btn-sm margin-5px" (click)="btn_detailAction(value)"
+          style="margin: 5px;">
+          <ion-icon name="document"></ion-icon>
+          Details
+        </button> -->
+        </ion-row>
+      </div>
+    </div>
+
+    <div style="margin-top: 70%;" *ngIf="enableflag==true"> 
+      <ion-row>
+        <ion-col class="h7 colalign">
+          <p style="color: #e30414;">No Records Found</p>
+        </ion-col>
+        </ion-row>
+    </div>
+  </div>
+</ion-content>

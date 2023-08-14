@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="historyForm">
+    <div class="form-row">
+      <div class="col">
+        <ion-datetime class="form-control" formControlName="fromdate" display-format="DD-MM-YYYY">
+        </ion-datetime>
+      </div>
+      <div style="margin-top: 10px;">To</div>
+      <div class="col">
+        <ion-datetime class="form-control" formControlName="todate" display-format="DD-MM-YYYY">
+        </ion-datetime>
+      </div>
+    </div>
+
+    <div class="form-row" style="align-items: center;">
+      
+      <div class="col">
+        <div class="form-check userinput">
+          <input type="checkbox" class="form-check-input" id="manualentry" formControlName="manualentry">
+          <label class="form-check-label" for="manualentry">Manual Entry</label>
+        </div>
+      </div>
+
+      <div class="col">
+        <button type="button" class="btn btn-outline-info userinput" style="float: right;" (click)="callAPI()"><ion-icon name="filter"></ion-icon>
+          Get Record(s)
+        </button>
+      </div>    
+
+    </div>
+
+    <!-- <div style="margin-right: 10px;">
+      <button type="button" class="btn btn-outline-info btn-sm margin-5px float-right"
+        (click)="callAPI()">
+        <ion-icon name="filter"></ion-icon>
+        Get Record(s)
+      </button>
+    </div> -->
+
+    <!-- <div class="form-row">
+      <div class="col">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="notfresh" formControlName="notfresh">
+          <label class="form-check-label" for="notfresh">Not Fresh</label>
+        </div>
+      </div>
+    </div> -->
+    
+  </form>
+
+  <div class="home-box">
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="tabs_segment">
+      <ion-segment-button value="ffb">
+        <ion-label>FFB</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="cpo">
+        <ion-label>CPO</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="pk">
+        <ion-label>PK</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div [ngSwitch]="tabs_segment">
+      <div class="home-box" *ngSwitchCase="'ffb'">
+        <div class="card gedf-card margin-bottom" *ngFor="let value of historyOrders">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 text-muted">Supplier Name: {{value.company_name}}</div>
+                  <div class="h7 text-muted">Date: {{value.date}}</div>
+                  <div class="h7 text-muted" *ngIf="value.vehicle_no != ''">Vehicle No: {{value.vehicle_no}}</div>
+                  <div class="h7 text-muted" *ngIf="value.vehicle_no == ''">Vehicle No: -</div>
+                  <div class="h7 text-muted" *ngIf="value.driver_name != ''">Driver Name: {{value.driver_name}}</div>
+                  <div class="h7 text-muted" *ngIf="value.driver_name == ''">Driver Name: -</div>                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <ion-row class="row-reverse">
+            <button type="button" class="btn btn-outline-danger btn-sm margin-5px" (click)="btn_mapAction(value)">
+              <ion-icon name="map"></ion-icon> Map
+            </button>
+            <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_detailAction(value)">
+              <ion-icon name="document"></ion-icon>
+              Details
+            </button>
+          </ion-row> -->
+        </div>
+      </div>
+
+      <div class="home-box" *ngSwitchCase="'cpo'">
+        <div class="card gedf-card margin-bottom" *ngFor="let value of historyOrders">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 m-0">{{value.driver_name}}</div>
+                  <div class="h7 text-muted">{{value.driver_nrci}}</div>
+                  <div class="h7 text-muted">{{value.timeIn}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ion-row class="marigin-10px row-reverse">
+            <button type="button" class="btn btn-info  ion-text-end btn-color btn-sm margin-5px"
+              (click)="btn_mapAction(value)">
+              <ion-icon name="map"></ion-icon> Map
+            </button>
+            <button type="button" class="btn btn-info  ion-text-end btn-yellow-color btn-sm margin-5px"
+              (click)="btn_detailAction(value)">
+              <ion-icon name="document"></ion-icon>
+              Details
+            </button>
+          </ion-row>
+        </div>
+      </div>
+
+      <div class="home-box" *ngSwitchCase="'pk'">
+        <div class="card gedf-card margin-bottom" *ngFor="let value of historyOrders">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 m-0">{{value.driver_name}}</div>
+                  <div class="h7 text-muted">{{value.driver_nrci}}</div>
+                  <div class="h7 text-muted">{{value.timeIn}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ion-row class="marigin-10px row-reverse">
+            <button type="button" class="btn btn-info  ion-text-end btn-color btn-sm margin-5px"
+              (click)="btn_mapAction(value)">
+              <ion-icon name="map"></ion-icon> Map
+            </button>
+            <button type="button" class="btn btn-info  ion-text-end btn-yellow-color btn-sm margin-5px"
+              (click)="btn_detailAction(value)">
+              <ion-icon name="document"></ion-icon>
+              Details
+            </button>
+          </ion-row>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">{{ 'GRADINGDASHBOARD.title' | translate}}</ion-title>
+    <ion-buttons slot="primary" *ngIf="userlist.plan=='Plan A'">
+      <ion-button class="bg-light-color" (click)="btn_GradingHome()">        
+        <ion-icon name="bus"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="primary">
+      <ion-button class="bg-light-color" (click)="btn_notification()">
+        <!-- <ion-badge *ngIf="count && count != 0" color="accent">{{ count }}</ion-badge> -->
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card class="bg-yellow card-height bottompad-10px" no-margin>
+        <span class="mdfont common-whitecolor">{{userlist.welcome_msg}}</span>
+        <ion-row>
+          <span class="common-whitecolor">
+            {{ 'GRADINGDASHBOARD.message' | translate}}
+          </span>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+
+  
+  <ion-row class="row-reverse">
+    <ion-col size="12">
+      <button type="button" class="btn btn-outline-danger btn-sm" style="margin-right: 6px; float: right;" (click)="btn_ReceiveGrading()">
+        <ion-icon name="bus"></ion-icon> {{ 'GRADINGDASHBOARD.buttonreceivenewload' | translate}}
+      </button>
+    </ion-col>
+  </ion-row>
+  <!-- <iframe src="http://103.27.72.29/mms.airei.com.my1/index.php/Reports/MMS_logsheet_mobile"  style="width:100%;height:100%" scrolling="yes" ></iframe> -->
+  <iframe [src]="weburl | safe"  style="width:100%;height:100%;border:none;" scrolling="yes"></iframe>
+</ion-content>

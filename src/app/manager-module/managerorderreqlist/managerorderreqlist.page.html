@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Request Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="row-reverse">
+    <ion-col size="12">
+      <button type="button" class="btn btn-outline-danger btn-sm margin-5px" (click)="btn_OrderRequest()">
+        <ion-icon name="document"></ion-icon> Request New Item
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <div class="home-box">
+    <ion-row style="padding-bottom: 10px;width: 100%;">
+      <ion-label>Recent Request Items</ion-label>
+    </ion-row>
+
+    <div>
+      <div class="card gedf-card margin-bottom" *ngFor="let value of recentStore">
+        <div class="card-header">
+            <div>
+              <div>
+                <div class="h7 text-danger"><b>Request Type : {{value.requesttype}}</b></div>
+                <!-- <div class="h7 text-muted">Department : {{value.department}}</div> -->
+                <div class="h7 text-muted">Request For : {{value.requestName}}</div>
+                <div class="h7 text-muted">No. Of Items: {{value.noofitems}}</div>
+                <div class="h7 text-dark">Requester By : {{value.requester_name}}</div>
+                <div class="h7 text-dark" style="float: right;">Date: {{value.date}}</div>
+              </div>
+          </div>
+        </div>
+        <ion-row class="row-reverse" style="padding-top: 10px;">
+
+          <button type="button" class="btn btn-outline-danger btn-sm margin-5px" (click)="confirmReceived(value)">
+            <ion-icon name="trash"></ion-icon>
+            Received
+          </button>
+
+          <button type="button" class="btn btn-outline-success btn-sm margin-5px" (click)="btn_detailAction(value)">
+            <ion-icon name="document"></ion-icon>
+            Details
+          </button>
+        </ion-row>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

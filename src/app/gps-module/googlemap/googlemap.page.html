@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav" (click)="back()"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Maps</ion-title>
+    <ion-buttons slot="end" *ngIf="name != 'Ffbsupplier' || name != 'Security'">
+      <button type="button" class="btn btn-outline-danger btn-sm margin-5px" style="text-align: right;" (click)="direction()">
+        <ion-icon name="ios-compass-outline"></ion-icon> Recenter
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div #map id="map"></div>
+</ion-content>

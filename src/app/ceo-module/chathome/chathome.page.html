@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-title color="light">Chats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="userlist.desigId!='10'">
+    <ion-row *ngFor="let item of itemsArr">
+      <ion-col size="6" *ngFor="let eachitem of item">
+        <div class="card item-img" (click)="btn_Action(eachitem)">
+          <div class="item">
+            <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+
+            <div  *ngIf="eachitem.title=='Broadcast'">              
+              <ion-badge class="badgecolor" *ngIf="brodacastcommcount>0">{{brodacastcommcount}}</ion-badge>
+            </div>
+
+            <div  *ngIf="eachitem.title=='Personalized'">              
+              <ion-badge class="badgecolor" *ngIf="personalizedcommcount>0">{{personalizedcommcount}}</ion-badge>
+            </div>
+
+            <div class="container txt-home">
+              <p>{{eachitem.title}}</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="userlist.desigId=='10'">
+    <ion-row *ngFor="let item of ceoArr">
+      <ion-col size="6" *ngFor="let eachitem of item">
+        <div class="card item-img" (click)="btn_Action(eachitem)">
+          <div class="item">
+            <img src="{{eachitem.imgpath}}" alt="PROFILE" />
+
+            <div  *ngIf="eachitem.title=='Broadcast'">              
+              <ion-badge class="badgecolor" *ngIf="brodacastcommcount>0">{{brodacastcommcount}}</ion-badge>
+            </div>
+
+            <div  *ngIf="eachitem.title=='Personalized'">              
+              <ion-badge class="badgecolor" *ngIf="personalizedcommcount>0">{{personalizedcommcount}}</ion-badge>
+            </div>
+
+            <div class="container txt-home">
+              <p>{{eachitem.title}}</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

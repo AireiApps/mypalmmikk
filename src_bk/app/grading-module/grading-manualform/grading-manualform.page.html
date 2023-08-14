@@ -1,0 +1,370 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav" (click)="goback()"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">{{ "GRADINGFORM.title" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="gradingForm">
+    <ion-row style="align-items: center">
+      <ion-col size="9">
+        <input
+          type="text"
+          class="h7 form-control"
+          formControlName="txt_supplier"
+          placeholder='{{ "GRADINGFORM.searchsupplier" | translate }}'
+          readonly
+        />
+      </ion-col>
+
+      <ion-col size="3" style="text-align: right">
+        <button
+          type="submit"
+          class="h7 btn btn-outline-danger"
+          (click)="searchsupplier()"
+        >
+          {{ "GRADINGFORM.buttonsearch" | translate }}
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <div class="home-box" *ngIf="supplierselected == true">
+      <div class="card">
+        <div class="h7" style="text-align: center; margin-top: 5px">
+          <b>{{ "GRADINGFORM.selectvehicleorenterlorrynumber" | translate }}</b>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark h6marigintop">
+              <b>{{ "GRADINGFORM.vehicle" | translate }}</b>
+            </div>
+          </div>
+          <div class="col">
+            <select class="form-control h7" formControlName="select_vehicle">
+              <option value="">
+                {{ "GRADINGFORM.selectvehicle" | translate }}
+              </option>
+              <option
+                value="{{parseString(value)}}"
+                *ngFor="let value of vechicleList"
+              >
+                {{ value.vehicle_no }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="h7" style="text-align: center;">
+          <b>(or)</b>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="h7 text-dark h6marigintop">
+              <b>{{ "GRADINGFORM.lorrynumber" | translate }}</b>
+            </div>
+          </div>
+          <div class="col">
+            <input
+              type="text"
+              class="form-control h7"
+              formControlName="lorry_number"
+              placeholder="{{ 'GRADINGFORM.lorrynumber' | translate }}"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.yearofplanting" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="year_planting"
+            placeholder="Year"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b
+              >{{ "GRADINGFORM.averagebunchweight" | translate }}
+              <sup>*</sup></b
+            >
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="bunch_weight"
+            placeholder="Kg"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.hardbunches" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="hard_bunches"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.underripebunches" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="under_ripe_bunches"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.loosefruits" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="loose_stalk"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.otherfactors" | translate }}</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="form-row">
+          <div class="col">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="dirt"
+                formControlName="dirt"
+              />
+              <label class="h7 form-check-label" for="dirt"
+                >{{ "GRADINGFORM.dirt" | translate }}</label
+              >
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="sand"
+                formControlName="sand"
+              />
+              <label class="h7 form-check-label" for="sand"
+                >{{ "GRADINGFORM.sand" | translate }}</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="notfresh"
+                formControlName="notfresh"
+              />
+              <label class="h7 form-check-label" for="notfresh"
+                >{{ "GRADINGFORM.notfresh" | translate }}</label
+              >
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="wet"
+                formControlName="wet"
+              />
+              <label class="h7 form-check-label" for="wet"
+                >{{ "GRADINGFORM.wet" | translate }}</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.bigbunches" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="big_bucket"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.mediumbunches" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="medium_bunches"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.smallbunches" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="small_bunches"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.rejectedbunches" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="rejected_bunches"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.dxd" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input type="number" class="form-control h7" formControlName="dxd" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.longstalk" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="long_stalk"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.lessoer" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="proposed_oer_deduction"
+            placeholder="%"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <div class="h7 text-dark h6marigintop">
+            <b>{{ "GRADINGFORM.lessweight" | translate }} <sup>*</sup></b>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            type="number"
+            class="form-control h7"
+            formControlName="proposed_weight_deduction"
+            placeholder="Kg"
+          />
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 10px">
+        <button
+          type="submit"
+          class="btn btn-success"
+          (click)="confirmApproveVechicle()"
+          [disabled]="disableButton"
+        >
+          {{ "GENERALBUTTON.savebutton" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Other Vehicle Entry History</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box">
+    <div class="card gedf-card margin-bottom" *ngFor="let value of vehicleList">
+      <div class="card-body">                                  
+           <div class="h7 text-muted">Driver Name :{{value.drivername}}</div>                    
+           <div class="h7 text-muted">IC Number :{{value.icnumber}}</div>
+           <div class="h7 text-muted">Vehicle Number :{{value.vehicle}}</div>
+           <div class="h7 text-muted">Comments :{{value.comments}}</div>
+          
+           <div style="margin-top: 10px;">
+            <div class="imagePreview" *ngIf="value.vehicleImage == ''"></div>
+            <div class="imagePresent" *ngIf="value.vehicleImage != ''">
+              <img class="imagePresent" (click)="viewimage(value.vehicleImage)" src="{{value.vehicleImage}}" />
+            </div>
+          </div>                         
+      </div>
+
+      <div class="card-footer">
+        <div class="h7 text-dark" style="float: right;">Date: {{value.insdt}}</div>
+      </div>
+    </div>
+    </div>
+</ion-content>

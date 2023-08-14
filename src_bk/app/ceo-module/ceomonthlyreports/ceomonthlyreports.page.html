@@ -1,0 +1,213 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light" *ngIf="userlist.desigId!=10"
+      >Monthly Reports</ion-title
+    >
+    <ion-title color="light" *ngIf="userlist.desigId==10"
+      >Financial Reports</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="home-box">
+    <ion-row>
+      <ion-col size="6">
+        <div class="card item-img" (click)="profitloss()">
+          <div class="item">
+            <img src="../../assets/img/profitandloss.png" alt="Profit & Loss" />
+            <div class="container txt-home">
+              <p>Profit & Loss</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="card item-img" (click)="trialbalance()">
+          <div class="item">
+            <img
+              src="../../assets/img/trialbalance.png"
+              alt="Trial Balance Report"
+            />
+            <div class="container txt-home">
+              <p>Trial Balance Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <div class="card item-img" (click)="balancesheet()">
+          <div class="item">
+            <img src="../../assets/img/balancesheet.png" alt="Balance Sheet" />
+            <div class="container txt-home">
+              <p>Balance Sheet</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="card item-img" (click)="debtorsaccount()">
+          <div class="item">
+            <img
+              src="../../assets/img/montlydebtor.png"
+              alt="Debtors Account"
+            />
+            <div class="container txt-home">
+              <p>Debtors Account Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <!-- <ion-col size="6">
+        <div class="card item-img" (click)="staffovertime()">
+          <div class="item">
+            <img
+              src="../../assets/img/staffovertime.png"
+              alt="Staff Overtime"
+            />
+            <div class="container txt-home">
+              <p>Staff Overtime Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col> -->
+
+      <!-- <ion-col size="6">
+        <div class="card item-img" (click)="staffsalary()">
+          <div class="item">
+            <img src="../../assets/img/staffsalary.png" alt="Staff Salary" />
+            <div class="container txt-home">
+              <p>Staff Salary Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col> -->
+
+      <ion-col size="6">
+        <div class="card item-img" (click)="ffbcreditormonthly()">
+          <div class="item">
+            <img
+              src="../../assets/img/monthlyffbcreditor.png"
+              alt="FFB Creditor Monthly"
+            />
+            <div class="container txt-home">
+              <p>FFB Creditor Monthly Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="card item-img" (click)="expense()">
+          <div class="item">
+            <img src="../../assets/img/expense.png" alt="Expense" />
+            <div class="container txt-home">
+              <p>Expense Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <!-- <ion-col size="6">
+        <div class="card item-img" (click)="palletplant()">
+          <div class="item">
+            <img
+              src="../../assets/img/palletplant.png"
+              alt="PalletPlant Report"
+            />
+            <div class="container txt-home">
+              <p>PalletPlant Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col> -->
+
+      <ion-col size="6">
+        <div class="card item-img" (click)="storecreditor()">
+          <div class="item">
+            <img
+              src="../../assets/img/storecreditor.png"
+              alt="StoreCreditor Report"
+            />
+            <div class="container txt-home">
+              <p>Store Creditor Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="card item-img" (click)="prepayment()">
+          <div class="item">
+            <img
+              src="../../assets/img/prepayment.png"
+              alt="Prepayment Report"
+            />
+            <div class="container txt-home">
+              <p>Prepayment Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <div class="card item-img" (click)="accruedcharges()">
+          <div class="item">
+            <img
+              src="../../assets/img/accruedcharges.png"
+              alt="Accrued Charges"
+            />
+            <div class="container txt-home">
+              <p>Accrued Charges Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+
+      <!-- <ion-col size="6">
+        <div class="card item-img" (click)="laboratorychemical()">
+          <div class="item">
+            <img
+              src="../../assets/img/laboratorychemical.png"
+              alt="Laboratory Chemical Report"
+            />
+            <div class="container txt-home">
+              <p>Laboratory Chemical Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col> -->
+    </ion-row>
+
+    <!-- <ion-row>
+      <ion-col size="6">
+        <div class="card item-img" (click)="factorychemicalconsumption()">
+          <div class="item">
+            <img
+              src="../../assets/img/factorychemical.png"
+              alt="Factory Chemical Consumption Report"
+            />
+            <div class="container txt-home">
+              <p>Factory Chemical Consumption Report</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row> -->
+  </div>
+</ion-content>

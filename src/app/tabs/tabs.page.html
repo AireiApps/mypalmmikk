@@ -1,0 +1,411 @@
+<ion-tabs *ngIf="getTabCheck('Ffbsupplier')" #myTabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tab1">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab2">
+      <ion-icon name="file-tray-full-outline"></ion-icon>
+      <ion-label>History</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Driver')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabdriver1">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabdriverhistory1">
+      <ion-icon name="file-tray-full-outline"></ion-icon>
+      <ion-label>History</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Security')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabsecurity">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabdriverhistory1">
+      <ion-icon name="file-tray-full-outline"></ion-icon>
+      <ion-label>Logbook</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabchats">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>Chats</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Grading')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabsgrading">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{ 'TABSGRADING.home' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabdriverhistory1">
+      <ion-icon name="file-tray-full-outline"></ion-icon>
+      <ion-label>{{ 'TABSGRADING.history' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabcommunication">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>{{ 'TABSGRADING.chats' | translate}}</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>{{ 'TABSGRADING.more' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Procurement')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabstore">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabcommunication">
+      <ion-icon name="mail"></ion-icon>
+      <ion-label>Communication</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabreports">
+      <ion-icon name="newspaper-outline"></ion-icon>
+      <ion-label>Reports</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Maintenance')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabmaintenancedashboard">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.dashboard' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabmaintenancehome">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.home' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabchecklist" *ngIf="userlist.desigId=='9'|| userlist.desigId=='81'">
+      <ion-icon name="list"></ion-icon>
+      <ion-label>Checklist</ion-label>
+    </ion-tab-button>
+    
+    <!-- <ion-tab-button tab="tabreports">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.chats' | translate}}</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.more' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Foreman')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabforemandashboard">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.dashboard' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabforemanhome">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.home' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabforemanreports">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.chats' | translate}}</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tabforemanmore">
+      <ion-icon name="apps"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.more' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Charge Man')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabchargemandashboard">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.dashboard' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabchargemanhome">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.home' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabchargemanreports">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.chats' | translate}}</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tabchargemanmore">
+      <ion-icon name="apps"></ion-icon>
+      <ion-label>{{ 'TABSMAINTENANCE.more' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Boiler')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabdashboard">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>{{ 'TABSBOILER.dashboard' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabboiler">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{ 'TABSBOILER.home' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabchats">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>{{ 'TABSBOILER.chats' | translate}}</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>{{ 'TABSBOILER.more' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Supplier')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabsupplier">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Production')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabsupervisordashboard">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>{{ 'TABSSUPERVISOR.dashboard' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabsupervisior" *ngIf="userlist.desigId!='25'">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{ 'TABSSUPERVISOR.home' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabchecklist" *ngIf="userlist.desigId=='86'">
+      <ion-icon name="list"></ion-icon>
+      <ion-label>Checklist</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabchats">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>{{ 'TABSSUPERVISOR.chats' | translate}}</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>{{ 'TABSSUPERVISOR.more' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('CEO')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabceo">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabchats">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>Chats</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tabreports">
+      <ion-icon name="newspaper-outline"></ion-icon>
+      <ion-label>Hourly Reports</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Visiting Consultant')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabceo">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabchats">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>Chats</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<!-- <ion-tabs *ngIf="getTabCheck('Manager')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabmanagerdashboard">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>{{ 'TABSMANAGER.dashboard' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabhome">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{ 'TABSMANAGER.home' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabchats">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>{{ 'TABSMANAGER.chats' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>{{ 'TABSMANAGER.more' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs> -->
+
+<ion-tabs *ngIf="getTabCheck('Manager')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabceo">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabchats">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>Chats</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Engineer')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabengineerdashboard">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>Dashboard</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabhome">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabreports">
+      <ion-icon name="newspaper-outline"></ion-icon>
+      <ion-label>Reports</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Laboratory')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tablaboratorydashboard">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>{{ 'TABSLAB.dashboard' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tablabhome">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{ 'TABSLAB.home' | translate}}</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="tabchats">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>{{ 'TABSLAB.chats' | translate}}</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="tabreports">
+      <ion-icon name="newspaper-outline"></ion-icon>
+      <ion-label>Reports</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>{{ 'TABSLAB.more' | translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ion-tabs *ngIf="getTabCheck('Estate Manager')">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tabemhome">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tabrecords">
+      <ion-icon name="newspaper-outline"></ion-icon>
+      <ion-label>Records</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>More</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

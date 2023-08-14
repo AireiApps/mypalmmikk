@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar class="bg-brown-color">
+    <ion-buttons slot="start">
+      <ion-back-button color="whitefav"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Action Weekly Maintenance</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+  <form [formGroup]="maintenancedetailForm">
+    <ion-card class="card">
+
+      <div class="col" style="margin-top: 10px;">
+        <div>Date</div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" formControlName="maintenancedate" value="{{getmaintenacedate}}" readonly>          
+        </div>
+      </div>
+
+    <!-- <div class="col" style="margin-top: 10px;">
+      <div>Year</div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="year" value="{{getyear}}" readonly>
+      </div>
+    </div>
+
+    <div class="col">
+      <div>Month</div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="month" value="{{getmonth}}" readonly>
+      </div>
+    </div>
+
+    <div class="col">
+      <div>Week</div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="week" value="{{getweek}}" readonly>
+      </div>
+    </div> -->
+    </ion-card>
+
+    <!-- <ion-card class="card"> -->
+      <div class="home-box">
+        <!-- <ion-row style="padding-bottom: 10px;"> -->
+        <ion-row>
+          <ion-label style="color: black;">Maintenance List(s)</ion-label>
+        </ion-row>
+
+        <div class="card gedf-card margin-bottom" *ngFor="let value of machinelist">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 text-danger"><b>Station Name :{{value.stationname}}</b></div>
+                  <div class="h7 text-dark">Machinery : {{value.locationname}}</div>
+                  <div class="h7 text-dark">Part : {{value.partsname}}</div>
+                  <div class="h7 text-dark">Job : {{value.job}}</div>
+                  <div class="h7 text-dark">Comments/Remarks : {{value.comments}}</div>
+                  <div class="h7 text-dark"><b>Status: {{value.machinestatus}}</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- </ion-card> -->
+    
+    <!-- <ion-card class="card"> -->
+      <div class="home-box">
+        <!-- <ion-row style="padding-bottom: 10px;"> -->
+        <ion-row>
+          <ion-label style="color: black;">Team List(s)</ion-label>
+        </ion-row>
+
+        <div class="card gedf-card margin-bottom" *ngFor="let value of teamlist">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="ml-2">
+                  <div class="h7 text-danger"><b>Foreman/Fitter: {{value.username}}</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- </ion-card> -->
+
+    <div class="col">
+      <div>Action</div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <select formControlName="maintenanceaction" class="form-control">
+          <option value="" selected>Select Action</option>
+          <option value="Completed">Completed</option>
+          <option value="Pending">Pending</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col" style="margin-top: 10px;">
+      <div>Comments</div>
+    </div>
+
+    <div class="form-row" style="margin-top: 5x;">
+      <div class="col">
+        <textarea class="form-control" formControlName="taComments" rows="5" placeholder="Enter Comments"></textarea>
+      </div>
+    </div>
+
+    <ion-row>
+      <ion-col size="12">
+        <button type="submit" class="btn btn-success" (click)="btn_save()" style="float: right;margin: 20px;">Submit</button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</div>
+</ion-content>
